@@ -101,3 +101,149 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Création d'un site web complet pour l'Iglesia Bautista Yaguita de Pastor avec toutes les sections (accueil, à propos, services, FEPROBA, ISL, ministères, événements, galerie, contact) et intégration backend pour formulaires fonctionnels"
+
+backend:
+  - task: "Contact API Endpoint"
+    implemented: true
+    working: "NA"
+    file: "server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Créé endpoint POST /api/contact avec modèle ContactMessage pour traiter les messages du formulaire de contact. Validation email et sauvegarde en MongoDB."
+
+  - task: "Newsletter API Endpoint"
+    implemented: true
+    working: "NA"
+    file: "server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Créé endpoint POST /api/newsletter/subscribe avec validation d'email unique et sauvegarde des abonnés en MongoDB."
+
+  - task: "Events API Endpoints"
+    implemented: true
+    working: "NA"
+    file: "server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Créé GET /api/events et POST /api/events pour récupérer et créer des événements. Données initialisées via init_data.py."
+
+  - task: "Church Info API"
+    implemented: true
+    working: "NA"
+    file: "server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Créé GET /api/church pour retourner les informations de base de l'église (statique pour l'instant)."
+
+  - task: "Services API"
+    implemented: true
+    working: "NA"
+    file: "server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Créé GET /api/services pour retourner les horaires des services religieux (données statiques)."
+
+  - task: "Database Initialization"
+    implemented: true
+    working: "NA"
+    file: "init_data.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Script d'initialisation créé et exécuté avec succès. 4 événements et 3 témoignages ajoutés à MongoDB."
+
+frontend:
+  - task: "Contact Form Integration"
+    implemented: true
+    working: "NA"
+    file: "Contact.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Intégré formulaire de contact avec backend API. Ajouté gestion d'états de chargement, messages de succès/erreur, et validation côté client."
+
+  - task: "Newsletter Subscription Integration"
+    implemented: true
+    working: "NA"
+    file: "Events.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Intégré inscription newsletter avec backend API. Ajouté validation, états de chargement et messages de confirmation."
+
+  - task: "Events Dynamic Loading"
+    implemented: true
+    working: "NA"
+    file: "Events.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Remplacé données mockées par appel API dynamique. Ajouté fallback vers mockData en cas d'erreur et states de chargement."
+
+  - task: "Complete Website Structure"
+    implemented: true
+    working: "NA"
+    file: "Multiple components"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Site complet avec Header, Hero, About, Services, FEPROBA, ISL, Ministries, Events, Gallery, Contact, Footer. Design moderne conservateur avec couleurs bleu/doré."
+
+metadata:
+  created_by: "main_agent"
+  version: "1.0"
+  test_sequence: 0
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Contact API Endpoint"
+    - "Newsletter API Endpoint"
+    - "Events API Endpoints"
+    - "Contact Form Integration"
+    - "Newsletter Subscription Integration"
+    - "Events Dynamic Loading"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "main"
+    - message: "Implémentation backend complète avec APIs Contact, Newsletter, Events. Frontend intégré avec gestion d'erreurs et fallbacks. Prêt pour tests backend complets des endpoints API et validation de l'intégration frontend-backend."
