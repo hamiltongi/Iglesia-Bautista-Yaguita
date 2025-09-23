@@ -206,7 +206,7 @@ frontend:
     status_history:
         - working: "NA"
         - agent: "main"
-        - comment: "Intégré formulaire de contact avec backend API. Ajouté gestion d'états de chargement, messages de succès/erreur, et validation côté client."
+        - comment: "Intégré formulaire de contact avec backend API. Ajouté gestion d'états de chargement, messages de succès/erreur, et validation côté client. Corrigé photo pasteur pour meilleur affichage du visage."
 
   - task: "Newsletter Subscription Integration"
     implemented: true
@@ -242,7 +242,7 @@ frontend:
     status_history:
         - working: "NA"
         - agent: "main"
-        - comment: "Site complet avec Header, Hero, About, Services, FEPROBA, ISL, Ministries, Events, Gallery, Contact, Footer. Design moderne conservateur avec couleurs bleu/doré."
+        - comment: "Site complet avec Header, Hero, About, Services, FEPROBA, ISL, Ministries, Events, Gallery, Contact, Footer. Design moderne conservateur avec couleurs bleu/doré. Photo pasteur corrigée pour meilleur cadrage du visage."
 
 metadata:
   created_by: "main_agent"
