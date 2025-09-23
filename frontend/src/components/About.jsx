@@ -71,9 +71,9 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10 bg-white p-6 rounded-2xl shadow-xl">
               <img 
-                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/ggi04ggb_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg" 
+                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
                 alt="Pasteur Smith Dumont" 
-                className="w-full h-96 object-cover rounded-xl"
+                className="w-full h-96 object-cover object-top rounded-xl"
               />
               <div className="mt-4 text-center">
                 <h4 className="text-xl font-bold text-gray-900">Pasteur Smith Dumont</h4>
