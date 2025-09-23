@@ -9,6 +9,10 @@ import About from "./components/About";
 import Services from "./components/Services";
 import FEPROBA from "./components/FEPROBA";
 import ISL from "./components/ISL";
+import Ministries from "./components/Ministries";
+import Events from "./components/Events";
+import Gallery from "./components/Gallery";
+import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
 const App = () => {
@@ -22,6 +26,10 @@ const App = () => {
           <Services />
           <FEPROBA />
           <ISL />
+          <Ministries />
+          <Events />
+          <Gallery />
+          <Contact />
         </main>
         <Footer />
       </BrowserRouter>
