@@ -3,14 +3,21 @@ Script d'initialisation des données de base pour l'église
 """
 import asyncio
 import os
+from dotenv import load_dotenv
+from pathlib import Path
 from motor.motor_asyncio import AsyncIOMotorClient
 from datetime import datetime, timedelta
 import uuid
 
+# Load environment variables
+ROOT_DIR = Path(__file__).parent
+load_dotenv(ROOT_DIR / '.env')
+
 # MongoDB connection
 mongo_url = os.environ.get('MONGO_URL')
+db_name = os.environ.get('DB_NAME', 'test_database')
 client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ.get('DB_NAME')]
+db = client[db_name]
 
 async def init_events():
     """Initialize default events"""
