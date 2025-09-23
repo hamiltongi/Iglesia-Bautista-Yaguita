@@ -6,6 +6,10 @@ import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import About from "./components/About";
+import Services from "./components/Services";
+import FEPROBA from "./components/FEPROBA";
+import ISL from "./components/ISL";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -15,7 +19,11 @@ const App = () => {
         <main>
           <Hero />
           <About />
+          <Services />
+          <FEPROBA />
+          <ISL />
         </main>
+        <Footer />
       </BrowserRouter>
     </div>
   );
