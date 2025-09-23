@@ -169,6 +169,21 @@ const Contact = () => {
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium">✅ Message envoyé avec succès !</p>
+                    <p className="text-green-600 text-sm">Nous vous contacterons bientôt.</p>
+                  </div>
+                )}
+                
+                {submitStatus === 'error' && (
+                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium">❌ Erreur lors de l'envoi</p>
+                    <p className="text-red-600 text-sm">Veuillez réessayer ou nous contacter directement.</p>
+                  </div>
+                )}
+                
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
@@ -181,6 +196,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       placeholder="Votre nom complet"
                       className="w-full"
                     />
@@ -197,6 +213,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       placeholder="votre@email.com"
                       className="w-full"
                     />
@@ -214,6 +231,7 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
+                      disabled={loading}
                       placeholder="Votre numéro de téléphone"
                       className="w-full"
                     />
@@ -230,6 +248,7 @@ const Contact = () => {
                       value={formData.subject}
                       onChange={handleChange}
                       required
+                      disabled={loading}
                       placeholder="Sujet de votre message"
                       className="w-full"
                     />
@@ -246,6 +265,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    disabled={loading}
                     placeholder="Écrivez votre message ici..."
                     rows={5}
                     className="w-full"
@@ -254,10 +274,20 @@ const Contact = () => {
 
                 <Button 
                   type="submit" 
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold transition-all duration-300"
+                  disabled={loading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <Send className="w-5 h-5 mr-2" />
-                  Envoyer le message
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Envoi en cours...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="w-5 h-5 mr-2" />
+                      Envoyer le message
+                    </>
+                  )}
                 </Button>
               </form>
             </Card>
