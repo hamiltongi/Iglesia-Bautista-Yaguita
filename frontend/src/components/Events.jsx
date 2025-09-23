@@ -106,7 +106,7 @@ const Events = () => {
 
         {/* Events grid */}
         <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {mockData.events.map((event) => (
+          {events.map((event) => (
             <Card key={event.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-blue-200 group">
               {/* Event header with date */}
               <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-6 text-white">
