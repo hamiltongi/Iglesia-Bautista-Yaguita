@@ -107,75 +107,93 @@ user_problem_statement: "Création d'un site web complet pour l'Iglesia Bautista
 backend:
   - task: "Contact API Endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Créé endpoint POST /api/contact avec modèle ContactMessage pour traiter les messages du formulaire de contact. Validation email et sauvegarde en MongoDB."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - POST /api/contact fonctionne parfaitement. Tests réussis: (1) Soumission valide avec tous les champs requis - message créé avec ID, timestamps et sauvegarde MongoDB, (2) Validation email - rejette correctement les emails invalides avec HTTP 422, (3) Champs manquants - rejette les données incomplètes avec HTTP 422. Logs backend confirment les opérations."
 
   - task: "Newsletter API Endpoint"
     implemented: true
-    working: "NA"
+    working: true
     file: "server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Créé endpoint POST /api/newsletter/subscribe avec validation d'email unique et sauvegarde des abonnés en MongoDB."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - POST /api/newsletter/subscribe fonctionne parfaitement. Tests réussis: (1) Inscription valide - crée abonné avec ID unique et timestamp, (2) Email dupliqué - rejette correctement avec HTTP 400 et message d'erreur approprié, (3) Email invalide - validation avec HTTP 422. Prévention des doublons confirmée."
 
   - task: "Events API Endpoints"
     implemented: true
-    working: "NA"
+    working: true
     file: "server.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Créé GET /api/events et POST /api/events pour récupérer et créer des événements. Données initialisées via init_data.py."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - GET /api/events fonctionne parfaitement. Récupère 4 événements initialisés depuis MongoDB avec tous les champs requis (id, title, date, time, description, location, category). Structure JSON correcte et données triées par date."
 
   - task: "Church Info API"
     implemented: true
-    working: "NA"
+    working: true
     file: "server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Créé GET /api/church pour retourner les informations de base de l'église (statique pour l'instant)."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - GET /api/church fonctionne parfaitement. Retourne toutes les informations requises: nom église, localisation, adresse, nom pasteur, téléphone et emails. Données statiques correctement configurées."
 
   - task: "Services API"
     implemented: true
-    working: "NA"
+    working: true
     file: "server.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Créé GET /api/services pour retourner les horaires des services religieux (données statiques)."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - GET /api/services fonctionne parfaitement. Retourne 4 services avec tous les champs requis (id, name, time, day, description): Culte Dimanche Matin, École du Dimanche, Culte Mercredi, Culte des Jeunes."
 
   - task: "Database Initialization"
     implemented: true
-    working: "NA"
+    working: true
     file: "init_data.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "main"
         - comment: "Script d'initialisation créé et exécuté avec succès. 4 événements et 3 témoignages ajoutés à MongoDB."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - Base de données initialisée correctement. Script init_data.py présent et fonctionnel. 4 événements confirmés via API /api/events avec données complètes (Conférence 2025, Formation FEPROBA, Graduation ISL, Journée Communautaire)."
 
 frontend:
   - task: "Contact Form Integration"
