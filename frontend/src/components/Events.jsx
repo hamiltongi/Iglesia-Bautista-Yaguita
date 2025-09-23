@@ -1,10 +1,72 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card } from './ui/card';
 import { Button } from './ui/button';
-import { Calendar, Clock, MapPin, ArrowRight } from 'lucide-react';
-import { mockData } from '../mockData';
+import { Calendar, Clock, MapPin, ArrowRight, Loader2 } from 'lucide-react';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Events = () => {
+  const [events, setEvents] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterLoading, setNewsletterLoading] = useState(false);
+  const [newsletterStatus, setNewsletterStatus] = useState(null);
+
+  // Fetch events from backend
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/events`);
+        if (response.ok) {
+          const data = await response.json();
+          setEvents(data);
+        } else {
+          throw new Error('Erreur lors du chargement des événements');
+        }
+      } catch (err) {
+        console.error('Error fetching events:', err);
+        setError(err.message);
+        // Fallback to mock data
+        const { mockData } = await import('../mockData');
+        setEvents(mockData.events);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvents();
+  }, []);
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault();
+    setNewsletterLoading(true);
+    setNewsletterStatus(null);
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/newsletter/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: newsletterEmail }),
+      });
+
+      if (response.ok) {
+        setNewsletterStatus('success');
+        setNewsletterEmail('');
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || 'Erreur lors de l\'inscription');
+      }
+    } catch (error) {
+      console.error('Error subscribing to newsletter:', error);
+      setNewsletterStatus('error');
+    } finally {
+      setNewsletterLoading(false);
+    }
+  };
+
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     return date.toLocaleDateString('fr-FR', {
@@ -14,6 +76,19 @@ const Events = () => {
       day: 'numeric'
     });
   };
+
+  if (loading) {
+    return (
+      <section id="events" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-center items-center h-64">
+            <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+            <span className="ml-2 text-gray-600">Chargement des événements...</span>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="events" className="py-20 bg-white">
