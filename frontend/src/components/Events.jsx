@@ -206,16 +206,41 @@ const Events = () => {
             sur nos événements et activités.
           </p>
           
-          <div className="max-w-md mx-auto flex gap-4">
+          {/* Newsletter status messages */}
+          {newsletterStatus === 'success' && (
+            <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg mx-auto max-w-md">
+              ✅ Inscription réussie ! Merci de rejoindre notre communauté.
+            </div>
+          )}
+          
+          {newsletterStatus === 'error' && (
+            <div className="mb-6 p-4 bg-red-100 text-red-800 rounded-lg mx-auto max-w-md">
+              ❌ Erreur d'inscription. Veuillez réessayer.
+            </div>
+          )}
+          
+          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto flex gap-4">
             <input 
               type="email" 
+              value={newsletterEmail}
+              onChange={(e) => setNewsletterEmail(e.target.value)}
               placeholder="Votre adresse e-mail"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white"
+              required
+              disabled={newsletterLoading}
+              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white disabled:opacity-50"
             />
-            <Button className="bg-white text-amber-600 hover:bg-amber-50 px-6 py-3 font-semibold transition-all duration-300">
-              S'abonner
+            <Button 
+              type="submit"
+              disabled={newsletterLoading}
+              className="bg-white text-amber-600 hover:bg-amber-50 px-6 py-3 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {newsletterLoading ? (
+                <Loader2 className="w-4 h-4 animate-spin" />
+              ) : (
+                'S\'abonner'
+              )}
             </Button>
-          </div>
+          </form>
         </div>
       </div>
     </section>
