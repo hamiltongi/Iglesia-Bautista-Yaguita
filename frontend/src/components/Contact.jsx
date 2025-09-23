@@ -147,9 +147,9 @@ const Contact = () => {
             <Card className="p-6 bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
               <div className="flex items-center space-x-4">
                 <img 
-                  src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/ggi04ggb_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg"
+                  src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg"
                   alt={mockData.church.pastor.name}
-                  className="w-16 h-16 rounded-full object-cover"
+                  className="w-16 h-16 rounded-full object-cover object-top"
                 />
                 <div>
                   <h4 className="text-lg font-bold text-gray-900">{mockData.church.pastor.name}</h4>
