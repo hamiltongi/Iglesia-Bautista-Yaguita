@@ -162,7 +162,81 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+# Church Information
+@api_router.get("/church")
+async def get_church_info():
+    return {
+        "name": "Iglesia Bautista Yaguita de Pastor",
+        "location": "Santiago, République Dominicaine", 
+        "address": "Avenida Nunez de Carcerez #9, Santiago RD",
+        "founded": "2011",
+        "years": "14",
+        "pastor": {
+            "name": "Pasteur Smith Dumont",
+            "phone": "+1 (829) 295-5254",
+            "email": "ibautistayaguitadelpastor@gmail.com",
+            "alternateEmail": "Smithdumont_3@hotmail.com"
+        }
+    }
 
+# Member Routes
+@api_router.post("/members/register", response_model=Member)
+async def register_member(member: MemberCreate):
+    # Check if email already exists
+    existing = await db.members.find_one({"email": member.email})
+    if existing:
+        raise HTTPException(status_code=400, detail="Cette adresse e-mail est déjà enregistrée")
+    
+    member_dict = member.dict()
+    member_obj = Member(**member_dict)
+    
+    try:
+        await db.members.insert_one(member_obj.dict())
+        logging.info(f"New member registered: {member_obj.name} ({member_obj.email})")
+        return member_obj
+    except Exception as e:
+        logging.error(f"Error registering member: {e}")
+        raise HTTPException(status_code=500, detail="Erreur lors de l'inscription du membre")
+
+@api_router.get("/members/count")
+async def get_members_count():
+    total = await db.members.count_documents({"active": True})
+    return {"total": total, "registered": total}
+
+@api_router.get("/members", response_model=List[Member])
+async def get_members():
+    """Get all members (admin only)"""
+    members = await db.members.find({"active": True}).to_list(1000)
+    return [Member(**member) for member in members]
+
+# Course Reservation Routes
+@api_router.post("/reservations", response_model=CourseReservation)
+async def create_course_reservation(reservation: CourseReservationCreate):
+    reservation_dict = reservation.dict()
+    reservation_obj = CourseReservation(**reservation_dict)
+    
+    try:
+        await db.course_reservations.insert_one(reservation_obj.dict())
+        logging.info(f"New course reservation: {reservation_obj.name} for {reservation_obj.course_name}")
+        return reservation_obj
+    except Exception as e:
+        logging.error(f"Error creating course reservation: {e}")
+        raise HTTPException(status_code=500, detail="Erreur lors de la réservation")
+
+@api_router.get("/reservations", response_model=List[CourseReservation])
+async def get_course_reservations():
+    """Get all course reservations (admin only)"""
+    reservations = await db.course_reservations.find().sort("created_at", -1).to_list(100)
+    return [CourseReservation(**reservation) for reservation in reservations]
+
+# Admin Routes
+@api_router.post("/admin/login")
+async def admin_login(credentials: AdminLogin):
+    # Simple authentication (in production, use proper hashing)
+    if credentials.username == "hamilton" and credentials.password == "Code2022@":
+        return {"success": True, "token": "admin-authenticated"}
+    else:
+        raise HTTPException(status_code=401, detail="Identifiants invalides")
 
 # Contact Routes
 @api_router.post("/contact", response_model=ContactMessage)
@@ -251,30 +325,30 @@ async def get_services():
         {
             "id": 1,
             "name": "Culte du Dimanche Matin",
-            "time": "09:00 AM",
+            "time": "07:00 - 10:00 AM / 11:00 AM - 12:00 PM",
             "day": "Dimanche",
             "description": "Service principal avec prédication et louange"
         },
         {
             "id": 2,
             "name": "École du Dimanche",
-            "time": "08:00 AM",
+            "time": "10:00 - 11:00 AM",
             "day": "Dimanche", 
             "description": "Étude biblique pour tous les âges"
         },
         {
             "id": 3,
-            "name": "Culte du Mercredi",
-            "time": "19:00 PM",
-            "day": "Mercredi",
-            "description": "Service de prière et étude biblique"
+            "name": "Culte du Mardi",
+            "time": "19:00 - 21:00 PM",
+            "day": "Mardi",
+            "description": "Service de prière et louange"
         },
         {
             "id": 4,
-            "name": "Culte des Jeunes",
-            "time": "18:00 PM",
+            "name": "Étude Biblique Vendredi",
+            "time": "19:00 - 21:00 PM",
             "day": "Vendredi",
-            "description": "Service dédié aux jeunes et adolescents"
+            "description": "Étude approfondie de la Bible"
         }
     ]
     return services
