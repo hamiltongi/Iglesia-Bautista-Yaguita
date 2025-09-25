@@ -3,8 +3,11 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { BookOpen, Users, Award, Globe, CheckCircle, ArrowRight } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useNavigate } from 'react-router-dom';
 
 const ISL = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="isl" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -68,11 +71,11 @@ const ISL = () => {
             
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 text-center border-blue-200">
-                <div className="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">{mockData.isl.students}+</div>
                 <p className="text-sm text-gray-600">Étudiants actifs</p>
               </Card>
               <Card className="p-6 text-center border-blue-200">
-                <div className="text-3xl font-bold text-blue-600 mb-2">25+</div>
+                <div className="text-3xl font-bold text-blue-600 mb-2">{mockData.isl.graduates}+</div>
                 <p className="text-sm text-gray-600">Diplômés en service</p>
               </Card>
             </div>
@@ -90,7 +93,23 @@ const ISL = () => {
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockData.isl.courses.map((course, index) => (
+            {mockData.isl.courses?.map((course, index) => (
+              <Card key={course.id || index} className="p-6 hover:shadow-lg transition-all duration-300 border-2 border-gray-100 hover:border-blue-200 group bg-white">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0">
+                    <CheckCircle className="w-6 h-6 text-blue-600" />
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900 group-hover:text-blue-900 transition-colors">
+                      {typeof course === 'string' ? course : course.name}
+                    </h4>
+                    {course.level && (
+                      <p className="text-sm text-blue-600 mt-1">{course.level}</p>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            )) || mockData.isl.courses.map((course, index) => (
               <Card key={index} className="p-6 hover:shadow-lg transition-all duration-300 border-2 border-gray-100 hover:border-blue-200 group bg-white">
                 <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0">
@@ -133,6 +152,7 @@ const ISL = () => {
             </div>
             
             <Button 
+              onClick={() => navigate('/isl-seminaire')}
               className="bg-white text-blue-600 hover:bg-blue-50 px-6 py-3 font-semibold transition-all duration-300 w-full"
             >
               Demander des informations

@@ -1,11 +1,15 @@
 import React from 'react';
 import { Card } from './ui/card';
-import { Users, Heart, Music, Globe, ChevronRight } from 'lucide-react';
+import { Button } from './ui/button';
+import { Users, Heart, Music, Globe, ChevronRight, ArrowRight } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useNavigate } from 'react-router-dom';
 
 const Ministries = () => {
+  const navigate = useNavigate();
+  
   const getMinistryIcon = (index) => {
-    const icons = [Users, Heart, Globe, Music];
+    const icons = [Users, Globe, Music, Heart, Users];
     return icons[index % icons.length];
   };
 
@@ -24,11 +28,12 @@ const Ministries = () => {
         </div>
 
         {/* Ministries grid */}
-        <div className="grid md:grid-cols-2 gap-8 mb-16">
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
           {mockData.ministries.map((ministry, index) => {
             const IconComponent = getMinistryIcon(index);
             return (
-              <Card key={ministry.id} className="p-8 hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-blue-200 group bg-white">
+              <Card key={ministry.id} className="p-8 hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-blue-200 group bg-white cursor-pointer"
+                    onClick={() => navigate(`/ministere/${ministry.id}`)}>
                 <div className="flex items-start space-x-6">
                   {/* Icon */}
                   <div className="flex-shrink-0">
@@ -40,7 +45,7 @@ const Ministries = () => {
                   {/* Content */}
                   <div className="flex-1">
                     <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-900 transition-colors">
-                      {ministry.name}
+                      {ministry.fullName || ministry.name}
                     </h3>
                     
                     <p className="text-sm text-blue-600 mb-3 font-medium">
@@ -118,6 +123,14 @@ const Ministries = () => {
               <p className="text-blue-100 text-sm">Adorer Dieu en esprit et en vérité</p>
             </div>
           </div>
+
+          <Button 
+            onClick={() => navigate('/contact')}
+            className="mt-8 bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg font-semibold transition-all duration-300"
+          >
+            Nous contacter pour rejoindre
+            <ArrowRight className="ml-2 h-5 w-5" />
+          </Button>
         </div>
       </div>
     </section>

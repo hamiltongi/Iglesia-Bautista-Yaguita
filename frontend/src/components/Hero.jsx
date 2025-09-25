@@ -1,8 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button';
-import { ArrowRight, Heart, Users, BookOpen } from 'lucide-react';
+import { Input } from './ui/input';
+import { ArrowRight, Heart, Users, BookOpen, UserPlus, CheckCircle, Loader2 } from 'lucide-react';
+import { mockData } from '../mockData';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Hero = () => {
+  const [showRegistration, setShowRegistration] = useState(false);
+  const [registrationData, setRegistrationData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    birthDate: '',
+    profession: ''
+  });
+  const [loading, setLoading] = useState(false);
+  const [registrationStatus, setRegistrationStatus] = useState(null);
+
+  const handleRegistrationChange = (e) => {
+    setRegistrationData({
+      ...registrationData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleRegistrationSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setRegistrationStatus(null);
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/members/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registrationData),
+      });
+
+      if (response.ok) {
+        setRegistrationStatus('success');
+        setRegistrationData({
+          name: '',
+          email: '',
+          phone: '',
+          address: '',
+          birthDate: '',
+          profession: ''
+        });
+        setTimeout(() => {
+          setShowRegistration(false);
+          setRegistrationStatus(null);
+        }, 3000);
+      } else {
+        throw new Error('Erreur lors de l\'inscription');
+      }
+    } catch (error) {
+      console.error('Registration error:', error);
+      setRegistrationStatus('error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 overflow-hidden">
       {/* Background decorative elements */}
@@ -30,18 +92,18 @@ const Hero = () => {
               
               <p className="text-xl text-gray-600 leading-relaxed max-w-xl">
                 Une communauté de foi au cœur de Santiago, dédiée à l'amour, 
-                l'éducation et la transformation spirituelle depuis des années.
+                l'éducation et la transformation spirituelle depuis {mockData.church.years} ans (fondée en {mockData.church.founded}).
               </p>
             </div>
 
             {/* Stats */}
             <div className="grid grid-cols-3 gap-6 py-8 border-y border-gray-200">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-900">500+</div>
-                <div className="text-sm text-gray-600">Membres fidèles</div>
+                <div className="text-3xl font-bold text-blue-900">{mockData.members?.registered || 342}</div>
+                <div className="text-sm text-gray-600">Membres inscrits</div>
               </div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-amber-600">6</div>
+                <div className="text-3xl font-bold text-amber-600">{mockData.church.years}</div>
                 <div className="text-sm text-gray-600">Ans de service</div>
               </div>
               <div className="text-center">
@@ -54,15 +116,17 @@ const Hero = () => {
             <div className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
+                onClick={() => setShowRegistration(true)}
                 className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
               >
-                Rejoignez-nous ce Dimanche
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <UserPlus className="mr-2 h-5 w-5" />
+                S'enregistrer dans la grande famille
               </Button>
               
               <Button 
                 variant="outline" 
                 size="lg" 
+                onClick={() => document.getElementById('ministries')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border-amber-600 text-amber-600 hover:bg-amber-50 px-8 py-4 text-lg transition-all duration-300"
               >
                 <BookOpen className="mr-2 h-5 w-5" />
@@ -110,14 +174,32 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Church image */}
+          {/* Right content - Church image with Pastor */}
           <div className="relative">
             <div className="relative z-10">
-              <img 
-                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
-                alt="Iglesia Bautista Yaguita de Pastor" 
-                className="w-full h-auto rounded-2xl shadow-2xl"
-              />
+              <div className="grid grid-cols-2 gap-4">
+                <img 
+                  src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
+                  alt="Iglesia Bautista Yaguita de Pastor" 
+                  className="w-full h-64 object-cover rounded-2xl shadow-2xl col-span-2"
+                />
+                <div className="bg-white p-4 rounded-xl shadow-lg">
+                  <img 
+                    src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
+                    alt="Pasteur Smith Dumont" 
+                    className="w-full h-32 object-cover object-top rounded-lg mb-3"
+                  />
+                  <h4 className="font-bold text-gray-900 text-sm">Past. Smith Dumont</h4>
+                  <p className="text-xs text-blue-600">Pasteur Principal</p>
+                </div>
+                <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-xl text-white">
+                  <h4 className="font-bold mb-2">Rejoignez-nous</h4>
+                  <p className="text-sm text-blue-100 mb-3">Dimanche 07:00 - 12:00</p>
+                  <Button size="sm" className="bg-white text-blue-600 hover:bg-blue-50">
+                    Plus d'infos
+                  </Button>
+                </div>
+              </div>
             </div>
             
             {/* Decorative elements around the image */}
@@ -126,6 +208,148 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* Registration Modal */}
+      {showRegistration && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h3 className="text-2xl font-bold text-gray-900">Inscription Membre</h3>
+                <button 
+                  onClick={() => setShowRegistration(false)}
+                  className="text-gray-400 hover:text-gray-600"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {registrationStatus === 'success' && (
+                <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
+                  <div className="flex items-center">
+                    <CheckCircle className="w-5 h-5 text-green-600 mr-2" />
+                    <p className="text-green-800 font-medium">Inscription réussie !</p>
+                  </div>
+                  <p className="text-green-600 text-sm mt-1">Bienvenue dans la famille de Dieu !</p>
+                </div>
+              )}
+
+              {registrationStatus === 'error' && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-800 font-medium">❌ Erreur lors de l'inscription</p>
+                  <p className="text-red-600 text-sm">Veuillez réessayer ou nous contacter.</p>
+                </div>
+              )}
+
+              <form onSubmit={handleRegistrationSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Nom complet *
+                  </label>
+                  <Input
+                    type="text"
+                    name="name"
+                    value={registrationData.name}
+                    onChange={handleRegistrationChange}
+                    required
+                    disabled={loading}
+                    placeholder="Votre nom complet"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Email *
+                  </label>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={registrationData.email}
+                    onChange={handleRegistrationChange}
+                    required
+                    disabled={loading}
+                    placeholder="votre@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Téléphone *
+                  </label>
+                  <Input
+                    type="tel"
+                    name="phone"
+                    value={registrationData.phone}
+                    onChange={handleRegistrationChange}
+                    required
+                    disabled={loading}
+                    placeholder="+1 (XXX) XXX-XXXX"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Adresse
+                  </label>
+                  <Input
+                    type="text"
+                    name="address"
+                    value={registrationData.address}
+                    onChange={handleRegistrationChange}
+                    disabled={loading}
+                    placeholder="Votre adresse"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Date de naissance
+                  </label>
+                  <Input
+                    type="date"
+                    name="birthDate"
+                    value={registrationData.birthDate}
+                    onChange={handleRegistrationChange}
+                    disabled={loading}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Profession
+                  </label>
+                  <Input
+                    type="text"
+                    name="profession"
+                    value={registrationData.profession}
+                    onChange={handleRegistrationChange}
+                    disabled={loading}
+                    placeholder="Votre profession"
+                  />
+                </div>
+
+                <Button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-semibold transition-all duration-300 disabled:opacity-50"
+                >
+                  {loading ? (
+                    <>
+                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                      Inscription en cours...
+                    </>
+                  ) : (
+                    <>
+                      <UserPlus className="w-5 h-5 mr-2" />
+                      S'inscrire
+                    </>
+                  )}
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

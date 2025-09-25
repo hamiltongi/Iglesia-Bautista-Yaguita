@@ -42,7 +42,7 @@ const Services = () => {
                   </div>
                   <div className="flex items-center justify-center text-amber-600">
                     <Clock className="w-4 h-4 mr-2" />
-                    <span className="font-medium">{service.time}</span>
+                    <span className="font-medium text-sm">{service.time}</span>
                   </div>
                 </div>
                 

@@ -3,8 +3,11 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { GraduationCap, Users, Heart, ArrowRight, CheckCircle } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useNavigate } from 'react-router-dom';
 
 const FEPROBA = () => {
+  const navigate = useNavigate();
+
   return (
     <section id="feproba" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -66,8 +69,8 @@ const FEPROBA = () => {
             
             <div className="grid grid-cols-2 gap-4">
               <Card className="p-6 text-center border-amber-200">
-                <div className="text-3xl font-bold text-amber-600 mb-2">15+</div>
-                <p className="text-sm text-gray-600">Programmes actifs</p>
+                <div className="text-3xl font-bold text-amber-600 mb-2">8+</div>
+                <p className="text-sm text-gray-600">Disciplines offertes</p>
               </Card>
               <Card className="p-6 text-center border-amber-200">
                 <div className="text-3xl font-bold text-amber-600 mb-2">85%</div>
@@ -139,6 +142,7 @@ const FEPROBA = () => {
           </div>
 
           <Button 
+            onClick={() => navigate('/feproba-programmes')}
             className="mt-8 bg-white text-amber-600 hover:bg-amber-50 px-8 py-3 text-lg font-semibold transition-all duration-300"
           >
             Découvrir nos programmes
