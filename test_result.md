@@ -215,9 +215,9 @@ backend:
 
   - task: "Donation System with Stripe Integration"
     implemented: true
-    working: true
+    working: false
     file: "server.py, donation_models.py, donation_service.py"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
     needs_retesting: false
     status_history:
@@ -227,6 +227,9 @@ backend:
         - working: true
         - agent: "testing"
         - comment: "✅ TESTÉ AVEC SUCCÈS - Système de dons Stripe fonctionne parfaitement. Tests réussis: (1) GET /api/donations/packages - récupère 5 packages (blessing, support, generosity, partnership, custom), (2) POST /api/donations/checkout avec package support ($50) - crée session Stripe avec URL checkout, (3) POST /api/donations/checkout avec montant personnalisé ($75) - session créée correctement, (4) Validation erreurs - package invalide rejeté (HTTP 400), montant manquant pour custom rejeté (HTTP 400), (5) GET /api/donations/status/{session_id} - récupère statut paiement avec montant et devise corrects, (6) Dons anonymes - fonctionnent sans authentification, (7) URLs success/cancel correctement générées. Taux de réussite: 7/7 tests (100%). Authentification optionnelle fonctionnelle."
+        - working: false
+        - agent: "testing"
+        - comment: "❌ PROBLÈME CRITIQUE IDENTIFIÉ (Janvier 2025) - Suite au rapport utilisateur que le système de dons ne fonctionne pas côté frontend. DIAGNOSTIC: (1) GET /api/donations/packages: ✅ FONCTIONNE - récupère correctement les 5 packages (blessing $25, support $50, generosity $100, partnership $250, custom $0), (2) POST /api/donations/checkout: ❌ ÉCHEC - HTTP 500 'Error creating payment session', (3) Logs backend révèlent: 'Invalid API Key provided: sk_test_***********************here'. CAUSE RACINE: La clé API Stripe dans /app/backend/.env est configurée avec une valeur placeholder 'sk_test_your_stripe_secret_key_here' au lieu d'une vraie clé de test Stripe. IMPACT: Les packages sont récupérés correctement mais toutes les tentatives de checkout échouent. Validation des erreurs fonctionne (package invalide, montant manquant). Taux de réussite: 3/7 tests (42.9%)."
 
 frontend:
   - task: "Contact Form Integration"
