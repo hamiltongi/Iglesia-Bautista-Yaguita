@@ -37,7 +37,7 @@ const Donations = () => {
 
   const fetchDonationPackages = async () => {
     try {
-      const response = await fetch(`${BACKEND_URL}/donations/packages`);
+      const response = await fetch(`${BACKEND_URL}/api/donations/packages`);
       if (response.ok) {
         const data = await response.json();
         setPackages(data);
