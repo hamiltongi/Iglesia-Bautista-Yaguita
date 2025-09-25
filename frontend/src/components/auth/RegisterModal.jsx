@@ -93,7 +93,7 @@ const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
       <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md max-h-screen overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
-          <h2 className="text-2xl font-bold text-gray-900">Inscription</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{t('inscription')}</h2>
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -114,7 +114,7 @@ const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
               <label htmlFor="first_name" className="block text-sm font-medium text-gray-700 mb-2">
-                Prénom
+                {t('prenom')}
               </label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
