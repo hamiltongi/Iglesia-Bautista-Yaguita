@@ -78,17 +78,70 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-1">
-            {navigation.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
-              >
-                {item.name}
-              </a>
-            ))}
-          </nav>
+          <div className="hidden lg:flex items-center space-x-4">
+            <nav className="flex space-x-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
+                >
+                  {item.name}
+                </a>
+              ))}
+            </nav>
+
+            {/* Auth Buttons */}
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {user?.first_name?.[0]}{user?.last_name?.[0]}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {user?.first_name}
+                  </span>
+                </div>
+                <Button
+                  onClick={handlePortalAccess}
+                  variant="outline"
+                  size="sm"
+                  className="flex items-center space-x-2"
+                >
+                  <User className="w-4 h-4" />
+                  <span>Mon Portail</span>
+                </Button>
+                <Button
+                  onClick={logout}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-600 hover:text-red-600"
+                >
+                  <LogOut className="w-4 h-4" />
+                </Button>
+              </div>
+            ) : (
+              <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
+                <Button
+                  onClick={() => setShowLoginModal(true)}
+                  variant="ghost"
+                  size="sm"
+                  className="text-gray-700 hover:text-blue-900"
+                >
+                  Connexion
+                </Button>
+                <Button
+                  onClick={() => setShowRegisterModal(true)}
+                  size="sm"
+                  className="bg-blue-600 hover:bg-blue-700 text-white"
+                >
+                  S'inscrire
+                </Button>
+              </div>
+            )}
+          </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
