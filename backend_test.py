@@ -177,12 +177,12 @@ class BackendTester:
             response = requests.get(f"{BACKEND_URL}/church", timeout=10)
             if response.status_code == 200:
                 data = response.json()
-                required_fields = ["name", "location", "address", "pastor_name", "pastor_phone", "pastor_email"]
+                required_fields = ["name", "location", "address", "pastor"]
                 if all(key in data for key in required_fields):
-                    if data["name"] == "Iglesia Bautista Yaguita de Pastor":
+                    if data["name"] == "Iglesia Bautista Yaguita de Pastor" and "name" in data["pastor"]:
                         self.log_result("Church API - Get info", True, "Church information retrieved successfully")
                     else:
-                        self.log_result("Church API - Get info", False, "Incorrect church name", data)
+                        self.log_result("Church API - Get info", False, "Incorrect church name or pastor structure", data)
                 else:
                     self.log_result("Church API - Get info", False, "Missing required fields", data)
             else:
