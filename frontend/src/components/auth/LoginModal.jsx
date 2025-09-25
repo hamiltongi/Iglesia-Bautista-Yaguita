@@ -67,7 +67,7 @@ const LoginModal = ({ isOpen, onClose, switchToRegister }) => {
           {/* Email */}
           <div className="mb-4">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-              Email
+              {t('email')}
             </label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
@@ -87,7 +87,7 @@ const LoginModal = ({ isOpen, onClose, switchToRegister }) => {
           {/* Password */}
           <div className="mb-6">
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
-              Mot de passe
+              {t('motDePasse')}
             </label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
