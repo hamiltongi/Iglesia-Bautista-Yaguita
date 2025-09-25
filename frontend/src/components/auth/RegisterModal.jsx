@@ -38,11 +38,11 @@ const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
 
   const validateForm = () => {
     if (formData.password !== formData.confirmPassword) {
-      setError('Les mots de passe ne correspondent pas');
+      setError(t('erreurFormulaire')); // Utilise une traduction générale pour l'instant
       return false;
     }
     if (formData.password.length < 6) {
-      setError('Le mot de passe doit contenir au moins 6 caractères');
+      setError(t('erreurFormulaire'));
       return false;
     }
     return true;
