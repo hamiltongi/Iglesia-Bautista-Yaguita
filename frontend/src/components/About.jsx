@@ -71,14 +71,14 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10 bg-white p-6 rounded-2xl shadow-xl">
               <img 
-                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
+                src="https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/kq7blv0c_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg" 
                 alt="Pasteur Smith Dumont" 
                 className="w-full h-96 object-cover object-top rounded-xl"
               />
               <div className="mt-4 text-center">
                 <h4 className="text-xl font-bold text-gray-900">Pasteur Smith Dumont</h4>
                 <p className="text-blue-600 font-medium">Pasteur Principal</p>
-                <p className="text-gray-600 mt-2">Serviteur dévoué et guide spirituel de notre communauté</p>
+                <p className="text-gray-600 mt-2">Serviteur dévoué et guide spirituel de notre communauté depuis {mockData.church.years} ans</p>
               </div>
             </div>
             
