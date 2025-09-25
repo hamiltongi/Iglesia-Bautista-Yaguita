@@ -324,13 +324,19 @@ async def get_donation_packages():
     return donation_service.get_packages()
 
 # Optional authentication dependency for donations
-async def get_optional_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+async def get_optional_current_user(credentials: Optional[HTTPAuthorizationCredentials] = Depends(HTTPBearer(auto_error=False))):
     """Get current authenticated user (optional)"""
     if not credentials:
         return None
     try:
-        return await get_current_user(credentials)
-    except HTTPException:
+        token = credentials.credentials
+        token_data = verify_token(token)
+        
+        user = await db.users.find_one({"id": token_data["user_id"]})
+        if user is None:
+            return None
+        return User(**user)
+    except Exception:
         return None
 
 @api_router.post("/donations/checkout", response_model=CheckoutResponse)
