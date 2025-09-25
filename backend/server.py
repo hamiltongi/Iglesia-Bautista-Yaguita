@@ -30,6 +30,33 @@ app = FastAPI(title="Iglesia Bautista Yaguita de Pastor API")
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Security
+security = HTTPBearer()
+
+# Authentication dependency
+async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """Get current authenticated user"""
+    token = credentials.credentials
+    token_data = verify_token(token)
+    
+    user = await db.users.find_one({"id": token_data["user_id"]})
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="User not found",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return User(**user)
+
+async def get_admin_user(current_user: User = Depends(get_current_user)):
+    """Require admin role"""
+    if current_user.role != UserRole.ADMIN:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Admin privileges required"
+        )
+    return current_user
+
 # Enums
 class MessageStatus(str, Enum):
     NEW = "new"
