@@ -323,10 +323,20 @@ async def get_donation_packages():
     """Get available donation packages"""
     return donation_service.get_packages()
 
+# Optional authentication dependency for donations
+async def get_optional_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
+    """Get current authenticated user (optional)"""
+    if not credentials:
+        return None
+    try:
+        return await get_current_user(credentials)
+    except HTTPException:
+        return None
+
 @api_router.post("/donations/checkout", response_model=CheckoutResponse)
 async def create_donation_checkout(
     checkout_request: CheckoutRequest,
-    current_user: Optional[User] = Depends(lambda credentials=Depends(security): get_current_user(credentials) if credentials else None)
+    current_user: Optional[User] = Depends(get_optional_current_user)
 ):
     """Create donation checkout session"""
     user_id = current_user.id if current_user else None
