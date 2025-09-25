@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Eye, EyeOff, Mail, Lock, User, Phone, Loader } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
   const [formData, setFormData] = useState({
@@ -11,12 +12,21 @@ const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
     first_name: '',
     last_name: '',
     phone: '',
+    // Nouveaux champs optionnels
+    niveau_etude_classique: '',
+    niveau_professionnel: '',
+    cin_nif_passport: '',
+    statut_matrimonial: '',
+    qte_enfants: '',
+    converti_status: '',
+    don_ministeriel: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const { register } = useAuth();
+  const { t } = useLanguage();
 
   const handleInputChange = (e) => {
     setFormData({
