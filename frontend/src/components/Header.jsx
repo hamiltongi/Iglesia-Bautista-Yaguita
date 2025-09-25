@@ -7,6 +7,10 @@ import RegisterModal from './auth/RegisterModal';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
+  
+  const { user, logout, isAuthenticated } = useAuth();
 
   const navigation = [
     { name: 'Accueil', href: '#home' },
@@ -19,6 +23,20 @@ const Header = () => {
     { name: 'Galerie', href: '#gallery' },
     { name: 'Contact', href: '#contact' }
   ];
+
+  const switchToRegister = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
+
+  const switchToLogin = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
+  };
+
+  const handlePortalAccess = () => {
+    window.location.href = '/portail-membre';
+  };
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
