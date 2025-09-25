@@ -16,6 +16,10 @@ from enum import Enum
 from auth_models import User, UserCreate, UserLogin, UserUpdate, Token, UserRole, UserStatus
 from auth_utils import verify_password, get_password_hash, create_access_token, verify_token
 
+# Import donation modules
+from donation_models import Donation, DonationPackage, CheckoutRequest, CheckoutResponse
+from donation_service import DonationService
+
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
