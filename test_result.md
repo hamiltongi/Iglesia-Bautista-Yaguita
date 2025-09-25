@@ -210,6 +210,21 @@ backend:
         - agent: "testing"
         - comment: "✅ TESTÉ AVEC SUCCÈS - Système d'authentification JWT fonctionne parfaitement. Tests réussis: (1) POST /api/auth/register - inscription utilisateur avec token JWT, (2) POST /api/auth/login - connexion avec mêmes identifiants, (3) GET /api/auth/me - récupération profil avec token, (4) PUT /api/auth/profile - mise à jour profil avec token, (5) Validation erreurs - email existant et mauvais mot de passe correctement rejetés, (6) Protection endpoints - accès non autorisé correctement bloqué. Taux de réussite: 8/8 tests (100%)."
 
+  - task: "Donation System with Stripe Integration"
+    implemented: true
+    working: true
+    file: "server.py, donation_models.py, donation_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Système de dons complet avec intégration Stripe implémenté. Packages prédéfinis (blessing, support, generosity, partnership, custom), création de sessions checkout, vérification statut paiement, webhook Stripe."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - Système de dons Stripe fonctionne parfaitement. Tests réussis: (1) GET /api/donations/packages - récupère 5 packages (blessing, support, generosity, partnership, custom), (2) POST /api/donations/checkout avec package support ($50) - crée session Stripe avec URL checkout, (3) POST /api/donations/checkout avec montant personnalisé ($75) - session créée correctement, (4) Validation erreurs - package invalide rejeté (HTTP 400), montant manquant pour custom rejeté (HTTP 400), (5) GET /api/donations/status/{session_id} - récupère statut paiement avec montant et devise corrects, (6) Dons anonymes - fonctionnent sans authentification, (7) URLs success/cancel correctement générées. Taux de réussite: 7/7 tests (100%). Authentification optionnelle fonctionnelle."
+
 frontend:
   - task: "Contact Form Integration"
     implemented: true
