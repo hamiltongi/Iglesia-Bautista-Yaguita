@@ -46,18 +46,21 @@ const HomePage = () => (
 const App = () => {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/feproba-programmes" element={<FEPROBAProgrammes />} />
-          <Route path="/isl-seminaire" element={<ISLSeminaire />} />
-          <Route path="/ministere/:id" element={<MinistryDetail />} />
-          <Route path="/admin" element={<AdminPanel />} />
-          <Route path="/visite-virtuelle" element={<VirtualTour />} />
-          <Route path="/leadership" element={<Leadership />} />
-          <Route path="/contact" element={<Contact />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/feproba-programmes" element={<FEPROBAProgrammes />} />
+            <Route path="/isl-seminaire" element={<ISLSeminaire />} />
+            <Route path="/ministere/:id" element={<MinistryDetail />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/visite-virtuelle" element={<VirtualTour />} />
+            <Route path="/leadership" element={<Leadership />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/portail-membre" element={<MemberPortal />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 };
