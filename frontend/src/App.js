@@ -59,6 +59,8 @@ const App = () => {
             <Route path="/leadership" element={<Leadership />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/portail-membre" element={<MemberPortal />} />
+            <Route path="/dons" element={<Donations />} />
+            <Route path="/dons/succes" element={<Donations />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
