@@ -1,14 +1,26 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Facebook, Instagram, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook, Instagram, Youtube, ExternalLink } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleSocialClick = (platform) => {
+    const url = mockData.socialMedia[platform];
+    if (url) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    } else {
+      alert(`Lien ${platform} bientôt disponible !`);
+    }
+  };
+
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Church Info */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-1">
             <div className="flex items-center space-x-3 mb-6">
               <img 
                 src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/m9yrtrgf_Add_a_heading-removebg-preview.png" 
@@ -17,26 +29,77 @@ const Footer = () => {
               />
               <div>
                 <h3 className="text-xl font-bold text-white">{mockData.church.name}</h3>
-                <p className="text-gray-300">{mockData.church.location}</p>
+                <p className="text-gray-300">Fondée en {mockData.church.founded}</p>
               </div>
             </div>
             
             <p className="text-gray-300 mb-6 leading-relaxed">
-              Une communauté de foi au cœur de Santiago, dédiée à l'amour, 
-              l'éducation et la transformation spirituelle. Rejoignez notre famille 
-              spirituelle et découvrez l'amour inconditionnel du Christ.
+              Une communauté de foi au cœur de Santiago depuis {mockData.church.years} ans, 
+              dédiée à l'amour, l'éducation et la transformation spirituelle.
             </p>
             
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors">
+              <button 
+                onClick={() => handleSocialClick('facebook')}
+                className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors group"
+                title="Facebook"
+              >
                 <Facebook size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors">
+                <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+              <button 
+                onClick={() => handleSocialClick('instagram')}
+                className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center hover:bg-pink-700 transition-colors group"
+                title="Instagram"
+              >
                 <Instagram size={20} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors">
+                <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+              <button 
+                onClick={() => handleSocialClick('youtube')}
+                className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center hover:bg-red-700 transition-colors group"
+                title="YouTube"
+              >
                 <Youtube size={20} />
-              </a>
+                <ExternalLink className="w-3 h-3 ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </button>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6 text-blue-400">Navigation</h4>
+            <div className="space-y-3">
+              <button onClick={() => navigate('/')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                Accueil
+              </button>
+              <a href="#about" className="block text-gray-300 hover:text-white transition-colors text-sm">À Propos</a>
+              <a href="#services" className="block text-gray-300 hover:text-white transition-colors text-sm">Services</a>
+              <a href="#ministries" className="block text-gray-300 hover:text-white transition-colors text-sm">Ministères</a>
+              <button onClick={() => navigate('/leadership')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                Leadership
+              </button>
+              <button onClick={() => navigate('/visite-virtuelle')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                Visite Virtuelle
+              </button>
+            </div>
+          </div>
+
+          {/* Institutions */}
+          <div>
+            <h4 className="text-lg font-semibold mb-6 text-blue-400">Nos Institutions</h4>
+            <div className="space-y-3">
+              <button onClick={() => navigate('/feproba-programmes')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                FEPROBA - Formation
+              </button>
+              <button onClick={() => navigate('/isl-seminaire')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                ISL - Séminaire
+              </button>
+              <a href="#events" className="block text-gray-300 hover:text-white transition-colors text-sm">Événements</a>
+              <a href="#gallery" className="block text-gray-300 hover:text-white transition-colors text-sm">Galerie</a>
+              <button onClick={() => navigate('/admin')} className="block text-gray-300 hover:text-white transition-colors text-sm text-left">
+                Administration
+              </button>
             </div>
           </div>
 
@@ -46,7 +109,10 @@ const Footer = () => {
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-blue-400 mt-1 flex-shrink-0" />
-                <p className="text-gray-300 text-sm">{mockData.church.address}</p>
+                <div>
+                  <p className="text-gray-300 text-sm">{mockData.church.address}</p>
+                  <p className="text-gray-300 text-sm">{mockData.church.location}</p>
+                </div>
               </div>
               
               <div className="flex items-center space-x-3">
@@ -63,19 +129,19 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6 text-blue-400">Liens Rapides</h4>
-            <div className="space-y-3">
-              <a href="#about" className="block text-gray-300 hover:text-white transition-colors text-sm">À Propos</a>
-              <a href="#services" className="block text-gray-300 hover:text-white transition-colors text-sm">Services</a>
-              <a href="#feproba" className="block text-gray-300 hover:text-white transition-colors text-sm">FEPROBA</a>
-              <a href="#isl" className="block text-gray-300 hover:text-white transition-colors text-sm">ISL</a>
-              <a href="#ministries" className="block text-gray-300 hover:text-white transition-colors text-sm">Ministères</a>
-              <a href="#events" className="block text-gray-300 hover:text-white transition-colors text-sm">Événements</a>
-              <a href="#contact" className="block text-gray-300 hover:text-white transition-colors text-sm">Contact</a>
+            {/* Map Link */}
+            <div className="mt-6">
+              <button 
+                onClick={() => {
+                  const address = encodeURIComponent(mockData.church.address + ', ' + mockData.church.location);
+                  window.open(`https://www.google.com/maps/search/?api=1&query=${address}`, '_blank');
+                }}
+                className="inline-flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg text-sm font-medium transition-colors"
+              >
+                <MapPin className="w-4 h-4 mr-2" />
+                Voir sur la carte
+              </button>
             </div>
           </div>
         </div>
@@ -85,9 +151,10 @@ const Footer = () => {
           <h4 className="text-lg font-semibold mb-6 text-center text-blue-400">Horaires des Services</h4>
           <div className="grid md:grid-cols-4 gap-4 text-center">
             {mockData.services.map((service) => (
-              <div key={service.id} className="bg-gray-800 rounded-lg p-4">
+              <div key={service.id} className="bg-gray-800 rounded-lg p-4 hover:bg-gray-700 transition-colors">
                 <h5 className="font-semibold text-white mb-2 text-sm">{service.name}</h5>
-                <p className="text-blue-400 text-sm">{service.day} - {service.time}</p>
+                <p className="text-blue-400 text-xs">{service.day}</p>
+                <p className="text-blue-400 text-xs">{service.time}</p>
               </div>
             ))}
           </div>
@@ -99,9 +166,15 @@ const Footer = () => {
             <p className="text-sm">
               © 2025 {mockData.church.name}. Tous droits réservés.
             </p>
-            <p className="text-sm">
-              Pasteur {mockData.church.pastor.name} - Santiago, République Dominicaine
-            </p>
+            <div className="flex space-x-6 text-sm">
+              <button onClick={() => navigate('/contact')} className="hover:text-white transition-colors">
+                Contact
+              </button>
+              <button onClick={() => navigate('/admin')} className="hover:text-white transition-colors">
+                Administration
+              </button>
+              <span>Site développé avec ❤️</span>
+            </div>
           </div>
         </div>
       </div>

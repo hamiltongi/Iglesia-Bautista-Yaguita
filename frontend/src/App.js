@@ -21,6 +21,7 @@ import ISLSeminaire from "./pages/ISLSeminaire";
 import MinistryDetail from "./pages/MinistryDetail";
 import AdminPanel from "./pages/AdminPanel";
 import VirtualTour from "./pages/VirtualTour";
+import Leadership from "./pages/Leadership";
 
 const HomePage = () => (
   <>
@@ -51,6 +52,7 @@ const App = () => {
           <Route path="/ministere/:id" element={<MinistryDetail />} />
           <Route path="/admin" element={<AdminPanel />} />
           <Route path="/visite-virtuelle" element={<VirtualTour />} />
+          <Route path="/leadership" element={<Leadership />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>

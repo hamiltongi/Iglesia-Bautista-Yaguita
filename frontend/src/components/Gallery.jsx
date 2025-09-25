@@ -3,9 +3,11 @@ import { Card } from './ui/card';
 import { Button } from './ui/button';
 import { Image, Users, Building, Heart, Filter } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useNavigate } from 'react-router-dom';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const navigate = useNavigate();
 
   const categories = [
     { id: 'all', name: 'Tout', icon: Image },
@@ -88,7 +90,7 @@ const Gallery = () => {
 
         {/* Virtual tour section */}
         <div className="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-12 text-center text-white">
-          <h3 className="text-3xl font-bold mb-4">Visite Virtuelle</h3>
+          <h3 className="text-3xl font-bold mb-4">Visite Virtuelle Complète</h3>
           <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto">
             Explorez notre église et découvrez nos installations modernes 
             conçues pour accueillir chaleureusement notre communauté.
@@ -121,10 +123,11 @@ const Gallery = () => {
           </div>
 
           <Button 
+            onClick={() => navigate('/visite-virtuelle')}
             className="mt-8 bg-white text-blue-600 hover:bg-blue-50 px-8 py-3 text-lg font-semibold transition-all duration-300"
           >
-            Commencer la visite
             <Building className="ml-2 h-5 w-5" />
+            Commencer la visite virtuelle
           </Button>
         </div>
       </div>
