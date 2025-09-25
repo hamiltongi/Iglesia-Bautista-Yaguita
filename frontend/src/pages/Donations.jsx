@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import { 
   Heart, 
   Gift, 
@@ -16,6 +17,7 @@ import Footer from '../components/Footer';
 
 const Donations = () => {
   const { user, isAuthenticated } = useAuth();
+  const { t } = useLanguage();
   const [packages, setPackages] = useState([]);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [customAmount, setCustomAmount] = useState('');
