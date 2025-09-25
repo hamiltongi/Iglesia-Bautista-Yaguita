@@ -76,7 +76,7 @@ const Donations = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}/donations/status/${sessionId}`);
+      const response = await fetch(`${BACKEND_URL}/api/donations/status/${sessionId}`);
       if (!response.ok) {
         throw new Error('Échec de la vérification du statut de paiement');
       }
