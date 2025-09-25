@@ -327,21 +327,39 @@ export const mockData = {
   gallery: [
     {
       id: 1,
-      title: "Culte du Dimanche",
+      title: "École Classique FEPROBA",
       category: "services",
-      image: "https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg"
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/3wrg7d46_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.40.06_b72847db.jpg"
     },
     {
       id: 2,
-      title: "Bâtiment de l'Église",
+      title: "Formation Informatique",
       category: "facilities",
-      image: "https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg"
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/493hz1iz_image.png"
     },
     {
       id: 3,
+      title: "Activités Éducatives",
+      category: "services",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/1z5lrt8l_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.41.04_be04c3c6.jpg"
+    },
+    {
+      id: 4,
+      title: "Bâtiment Moderne FEPROBA",
+      category: "facilities",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/2eup2z96_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg"
+    },
+    {
+      id: 5,
+      title: "Programme Alimentaire",
+      category: "services",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/5omceiiz_WhatsApp%20Image%202025-05-21%20%C3%A0%2012.32.51_c2b1885a.jpg"
+    },
+    {
+      id: 6,
       title: "Leadership de l'Église",
       category: "leadership",
-      image: "https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg"
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/kq7blv0c_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg"
     }
   ],
 
