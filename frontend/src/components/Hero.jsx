@@ -174,12 +174,12 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Church image */}
+          {/* Right content - Pastor image */}
           <div className="relative">
             <div className="relative z-10">
               <img 
-                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
-                alt="Iglesia Bautista Yaguita de Pastor" 
+                src="https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/kq7blv0c_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg" 
+                alt="Pasteur Smith Dumont - Iglesia Bautista Yaguita de Pastor" 
                 className="w-full h-auto rounded-2xl shadow-2xl"
               />
             </div>
