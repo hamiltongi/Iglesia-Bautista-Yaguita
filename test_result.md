@@ -299,10 +299,12 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus: []
-  stuck_tasks: []
-  test_all: true
-  test_priority: "completed"
+  current_focus:
+    - "Donation System with Stripe Integration"
+  stuck_tasks:
+    - "Donation System with Stripe Integration"
+  test_all: false
+  test_priority: "high_first"
 
 agent_communication:
     - agent: "main"
