@@ -173,7 +173,7 @@ const ISLSeminaire = () => {
               </div>
             </div>
           </div>
-        </div>
+        </Card>
       </div>
 
       {/* Stats */}
