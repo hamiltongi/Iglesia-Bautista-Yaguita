@@ -171,9 +171,77 @@ const Header = () => {
                 {item.name}
               </a>
             ))}
+            
+            {/* Mobile Auth Buttons */}
+            <div className="pt-4 mt-4 border-t border-gray-200 space-y-2">
+              {isAuthenticated ? (
+                <>
+                  <div className="flex items-center space-x-3 px-3 py-2">
+                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                      <span className="text-white text-sm font-medium">
+                        {user?.first_name?.[0]}{user?.last_name?.[0]}
+                      </span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">
+                      {user?.first_name} {user?.last_name}
+                    </span>
+                  </div>
+                  <Button
+                    onClick={handlePortalAccess}
+                    variant="outline"
+                    className="w-full justify-start"
+                  >
+                    <User className="w-4 h-4 mr-2" />
+                    Mon Portail
+                  </Button>
+                  <Button
+                    onClick={logout}
+                    variant="ghost"
+                    className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
+                  >
+                    <LogOut className="w-4 h-4 mr-2" />
+                    Se déconnecter
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    onClick={() => {
+                      setShowLoginModal(true);
+                      setIsMenuOpen(false);
+                    }}
+                    variant="ghost"
+                    className="w-full justify-start"
+                  >
+                    Connexion
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setShowRegisterModal(true);
+                      setIsMenuOpen(false);
+                    }}
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
+                  >
+                    S'inscrire
+                  </Button>
+                </>
+              )}
+            </div>
           </div>
         </div>
       )}
+      
+      {/* Auth Modals */}
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        switchToRegister={switchToRegister}
+      />
+      <RegisterModal
+        isOpen={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+        switchToLogin={switchToLogin}
+      />
     </header>
   );
 };
