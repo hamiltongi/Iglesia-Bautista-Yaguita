@@ -13,6 +13,7 @@ const LoginModal = ({ isOpen, onClose, switchToRegister }) => {
   const [loading, setLoading] = useState(false);
 
   const { login } = useAuth();
+  const { t } = useLanguage();
 
   const handleInputChange = (e) => {
     setFormData({
