@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 
 // Import components
 import Header from "./components/Header";
@@ -22,6 +23,7 @@ import MinistryDetail from "./pages/MinistryDetail";
 import AdminPanel from "./pages/AdminPanel";
 import VirtualTour from "./pages/VirtualTour";
 import Leadership from "./pages/Leadership";
+import MemberPortal from "./pages/MemberPortal";
 
 const HomePage = () => (
   <>
