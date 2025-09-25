@@ -96,15 +96,54 @@ class EventCreate(BaseModel):
     location: str
     category: EventCategory = EventCategory.COMMUNITY
 
-# Church Information Model
-class ChurchInfo(BaseModel):
-    name: str = "Iglesia Bautista Yaguita de Pastor"
-    location: str = "Santiago, République Dominicaine"
-    address: str = "Avenida Nunez de Carcerez #9, Santiago RD"
-    pastor_name: str = "Pasteur Smith Dumont"
-    pastor_phone: str = "+1 (829) 295-5254"
-    pastor_email: str = "ibautistayaguitadelpastor@gmail.com"
-    pastor_alternate_email: str = "Smithdumont_3@hotmail.com"
+# Member Models
+class Member(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: EmailStr
+    phone: str
+    address: Optional[str] = None
+    birth_date: Optional[str] = None
+    profession: Optional[str] = None
+    registration_date: datetime = Field(default_factory=datetime.utcnow)
+    active: bool = True
+
+class MemberCreate(BaseModel):
+    name: str
+    email: EmailStr
+    phone: str
+    address: Optional[str] = None
+    birth_date: Optional[str] = None
+    profession: Optional[str] = None
+
+# Course Reservation Models
+class CourseReservation(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    name: str
+    email: EmailStr
+    phone: str
+    course_type: str  # "feproba" or "isl"
+    course_name: str
+    message: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    status: MessageStatus = MessageStatus.NEW
+
+class CourseReservationCreate(BaseModel):
+    name: str
+    email: EmailStr
+    phone: str
+    course_type: str
+    course_name: str
+    message: Optional[str] = None
+
+# Admin Models
+class AdminUser(BaseModel):
+    username: str
+    password: str
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
