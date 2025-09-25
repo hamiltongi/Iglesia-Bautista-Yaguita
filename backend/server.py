@@ -123,10 +123,7 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
-# Church Information
-@api_router.get("/church", response_model=ChurchInfo)
-async def get_church_info():
-    return ChurchInfo()
+
 
 # Contact Routes
 @api_router.post("/contact", response_model=ContactMessage)
