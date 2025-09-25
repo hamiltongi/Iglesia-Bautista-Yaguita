@@ -24,6 +24,7 @@ import AdminPanel from "./pages/AdminPanel";
 import VirtualTour from "./pages/VirtualTour";
 import Leadership from "./pages/Leadership";
 import MemberPortal from "./pages/MemberPortal";
+import Donations from "./pages/Donations";
 
 const HomePage = () => (
   <>
