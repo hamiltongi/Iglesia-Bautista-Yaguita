@@ -553,7 +553,8 @@ class BackendTester:
         self.test_events_api()
         self.test_church_api()
         self.test_services_api()
-        self.test_authentication_api()  # New authentication tests
+        self.test_authentication_api()  # Authentication tests
+        self.test_donations_api()  # New donation system tests
         
         # Print summary
         print("\n" + "=" * 60)
