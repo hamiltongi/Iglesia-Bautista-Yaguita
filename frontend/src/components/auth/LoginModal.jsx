@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { X, Eye, EyeOff, Mail, Lock, Loader } from 'lucide-react';
 import { useAuth } from '../../contexts/AuthContext';
+import { useLanguage } from '../../contexts/LanguageContext';
 
 const LoginModal = ({ isOpen, onClose, switchToRegister }) => {
   const [formData, setFormData] = useState({
