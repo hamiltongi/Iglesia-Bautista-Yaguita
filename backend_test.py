@@ -211,6 +211,158 @@ class BackendTester:
         except Exception as e:
             self.log_result("Services API - Get services", False, f"Request failed: {str(e)}")
     
+    def test_authentication_api(self):
+        """Test Authentication API - Complete JWT authentication flow"""
+        print("\n=== Testing Authentication API ===")
+        
+        # Generate unique test data
+        unique_id = uuid.uuid4().hex[:8]
+        test_user_data = {
+            "email": f"test.{unique_id}@iglesia.com",
+            "username": f"testuser{unique_id}",
+            "password": "motdepasse123",
+            "first_name": "Jean",
+            "last_name": "Dupont",
+            "phone": "+1829-123-4567"
+        }
+        
+        access_token = None
+        
+        # Test 1: User Registration - POST /api/auth/register
+        try:
+            response = requests.post(f"{BACKEND_URL}/auth/register", json=test_user_data, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["access_token", "token_type", "expires_in", "user"]
+                if all(key in data for key in required_fields):
+                    access_token = data["access_token"]
+                    user_data = data["user"]
+                    if (user_data["email"] == test_user_data["email"] and 
+                        user_data["username"] == test_user_data["username"] and
+                        user_data["first_name"] == test_user_data["first_name"]):
+                        self.log_result("Auth API - User registration", True, "User registered successfully with JWT token")
+                    else:
+                        self.log_result("Auth API - User registration", False, "User data mismatch in response", user_data)
+                else:
+                    self.log_result("Auth API - User registration", False, "Missing required fields in token response", data)
+            else:
+                self.log_result("Auth API - User registration", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - User registration", False, f"Request failed: {str(e)}")
+        
+        # Test 2: Duplicate Email Registration (should fail)
+        try:
+            response = requests.post(f"{BACKEND_URL}/auth/register", json=test_user_data, timeout=10)
+            if response.status_code == 400:
+                self.log_result("Auth API - Duplicate email validation", True, "Correctly rejected duplicate email registration")
+            else:
+                self.log_result("Auth API - Duplicate email validation", False, f"Expected 400, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - Duplicate email validation", False, f"Request failed: {str(e)}")
+        
+        # Test 3: User Login - POST /api/auth/login
+        login_data = {
+            "email": test_user_data["email"],
+            "password": test_user_data["password"]
+        }
+        
+        try:
+            response = requests.post(f"{BACKEND_URL}/auth/login", json=login_data, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["access_token", "token_type", "expires_in", "user"]
+                if all(key in data for key in required_fields):
+                    access_token = data["access_token"]  # Update token from login
+                    self.log_result("Auth API - User login", True, "User logged in successfully with JWT token")
+                else:
+                    self.log_result("Auth API - User login", False, "Missing required fields in login response", data)
+            else:
+                self.log_result("Auth API - User login", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - User login", False, f"Request failed: {str(e)}")
+        
+        # Test 4: Invalid Login Credentials
+        invalid_login = {
+            "email": test_user_data["email"],
+            "password": "wrongpassword"
+        }
+        
+        try:
+            response = requests.post(f"{BACKEND_URL}/auth/login", json=invalid_login, timeout=10)
+            if response.status_code == 401:
+                self.log_result("Auth API - Invalid password validation", True, "Correctly rejected invalid password")
+            else:
+                self.log_result("Auth API - Invalid password validation", False, f"Expected 401, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - Invalid password validation", False, f"Request failed: {str(e)}")
+        
+        # Test 5: Get User Profile - GET /api/auth/me (requires token)
+        if access_token:
+            headers = {"Authorization": f"Bearer {access_token}"}
+            try:
+                response = requests.get(f"{BACKEND_URL}/auth/me", headers=headers, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    if (data["email"] == test_user_data["email"] and 
+                        data["username"] == test_user_data["username"]):
+                        self.log_result("Auth API - Get user profile", True, "User profile retrieved successfully")
+                    else:
+                        self.log_result("Auth API - Get user profile", False, "Profile data mismatch", data)
+                else:
+                    self.log_result("Auth API - Get user profile", False, f"HTTP {response.status_code}", response.text)
+            except Exception as e:
+                self.log_result("Auth API - Get user profile", False, f"Request failed: {str(e)}")
+        else:
+            self.log_result("Auth API - Get user profile", False, "No access token available for profile test")
+        
+        # Test 6: Get Profile without Token (should fail)
+        try:
+            response = requests.get(f"{BACKEND_URL}/auth/me", timeout=10)
+            if response.status_code == 403:  # Forbidden without token
+                self.log_result("Auth API - Unauthorized profile access", True, "Correctly rejected request without token")
+            else:
+                self.log_result("Auth API - Unauthorized profile access", False, f"Expected 403, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - Unauthorized profile access", False, f"Request failed: {str(e)}")
+        
+        # Test 7: Update User Profile - PUT /api/auth/profile (requires token)
+        if access_token:
+            headers = {"Authorization": f"Bearer {access_token}"}
+            profile_update = {
+                "first_name": "Jean-Baptiste",
+                "last_name": "Dupont-Martinez",
+                "bio": "Membre actif de l'église depuis 2024",
+                "profession": "Ingénieur logiciel"
+            }
+            
+            try:
+                response = requests.put(f"{BACKEND_URL}/auth/profile", json=profile_update, headers=headers, timeout=10)
+                if response.status_code == 200:
+                    data = response.json()
+                    if (data["first_name"] == profile_update["first_name"] and 
+                        data["last_name"] == profile_update["last_name"] and
+                        data["bio"] == profile_update["bio"]):
+                        self.log_result("Auth API - Update user profile", True, "User profile updated successfully")
+                    else:
+                        self.log_result("Auth API - Update user profile", False, "Profile update data mismatch", data)
+                else:
+                    self.log_result("Auth API - Update user profile", False, f"HTTP {response.status_code}", response.text)
+            except Exception as e:
+                self.log_result("Auth API - Update user profile", False, f"Request failed: {str(e)}")
+        else:
+            self.log_result("Auth API - Update user profile", False, "No access token available for profile update test")
+        
+        # Test 8: Update Profile without Token (should fail)
+        profile_update = {"first_name": "Test"}
+        try:
+            response = requests.put(f"{BACKEND_URL}/auth/profile", json=profile_update, timeout=10)
+            if response.status_code == 403:  # Forbidden without token
+                self.log_result("Auth API - Unauthorized profile update", True, "Correctly rejected profile update without token")
+            else:
+                self.log_result("Auth API - Unauthorized profile update", False, f"Expected 403, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Auth API - Unauthorized profile update", False, f"Request failed: {str(e)}")
+    
     def test_root_endpoint(self):
         """Test root API endpoint"""
         print("\n=== Testing Root Endpoint ===")
