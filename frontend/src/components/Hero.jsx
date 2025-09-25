@@ -174,32 +174,14 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Church image with Pastor */}
+          {/* Right content - Church image */}
           <div className="relative">
             <div className="relative z-10">
-              <div className="grid grid-cols-2 gap-4">
-                <img 
-                  src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
-                  alt="Iglesia Bautista Yaguita de Pastor" 
-                  className="w-full h-64 object-cover rounded-2xl shadow-2xl col-span-2"
-                />
-                <div className="bg-white p-4 rounded-xl shadow-lg">
-                  <img 
-                    src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
-                    alt="Pasteur Smith Dumont" 
-                    className="w-full h-32 object-cover object-top rounded-lg mb-3"
-                  />
-                  <h4 className="font-bold text-gray-900 text-sm">Past. Smith Dumont</h4>
-                  <p className="text-xs text-blue-600">Pasteur Principal</p>
-                </div>
-                <div className="bg-gradient-to-br from-blue-600 to-blue-800 p-4 rounded-xl text-white">
-                  <h4 className="font-bold mb-2">Rejoignez-nous</h4>
-                  <p className="text-sm text-blue-100 mb-3">Dimanche 07:00 - 12:00</p>
-                  <Button size="sm" className="bg-white text-blue-600 hover:bg-blue-50">
-                    Plus d'infos
-                  </Button>
-                </div>
-              </div>
+              <img 
+                src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/locsay3u_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg" 
+                alt="Iglesia Bautista Yaguita de Pastor" 
+                className="w-full h-auto rounded-2xl shadow-2xl"
+              />
             </div>
             
             {/* Decorative elements around the image */}
