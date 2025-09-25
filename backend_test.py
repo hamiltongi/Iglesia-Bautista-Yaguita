@@ -394,6 +394,34 @@ class BackendTester:
         except Exception as e:
             self.log_result("Donations API - Get packages", False, f"Request failed: {str(e)}")
         
+        # Create a test user and get auth token for donation tests
+        unique_id = uuid.uuid4().hex[:8]
+        test_user_data = {
+            "email": f"donor.{unique_id}@iglesia.com",
+            "username": f"donor{unique_id}",
+            "password": "donorpass123",
+            "first_name": "Jean",
+            "last_name": "Donateur",
+            "phone": "+1829-555-0123"
+        }
+        
+        access_token = None
+        
+        # Register user for donation tests
+        try:
+            response = requests.post(f"{BACKEND_URL}/auth/register", json=test_user_data, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                access_token = data.get("access_token")
+                print(f"   Created test user for donation tests: {test_user_data['email']}")
+            else:
+                print(f"   Warning: Could not create test user for donation tests: {response.status_code}")
+        except Exception as e:
+            print(f"   Warning: Error creating test user: {str(e)}")
+        
+        # Set up headers for authenticated requests
+        headers = {"Authorization": f"Bearer {access_token}"} if access_token else {}
+        
         # Test 2: Create Checkout with Support Package ($50) - POST /api/donations/checkout
         support_checkout_data = {
             "package_id": "support",
@@ -406,7 +434,7 @@ class BackendTester:
         }
         
         try:
-            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=support_checkout_data, timeout=15)
+            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=support_checkout_data, headers=headers, timeout=15)
             if response.status_code == 200:
                 data = response.json()
                 required_fields = ["url", "session_id", "donation_id"]
@@ -439,7 +467,7 @@ class BackendTester:
         }
         
         try:
-            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=custom_checkout_data, timeout=15)
+            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=custom_checkout_data, headers=headers, timeout=15)
             if response.status_code == 200:
                 data = response.json()
                 required_fields = ["url", "session_id", "donation_id"]
@@ -468,7 +496,7 @@ class BackendTester:
         }
         
         try:
-            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=invalid_package_data, timeout=10)
+            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=invalid_package_data, headers=headers, timeout=10)
             if response.status_code == 400:
                 self.log_result("Donations API - Invalid package validation", True, "Correctly rejected invalid package ID")
             else:
@@ -487,7 +515,7 @@ class BackendTester:
         }
         
         try:
-            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=custom_no_amount_data, timeout=10)
+            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=custom_no_amount_data, headers=headers, timeout=10)
             if response.status_code == 400:
                 self.log_result("Donations API - Custom missing amount validation", True, "Correctly rejected custom package without amount")
             else:
@@ -517,9 +545,30 @@ class BackendTester:
         else:
             self.log_result("Donations API - Payment status check", False, "No session ID available for status test")
         
-        # Test 7: Verify Success/Cancel URLs Structure
-        # This is tested implicitly in the checkout tests above by checking the URL format
-        # Additional verification could be done by parsing the checkout response URLs
+        # Test 7: Test without authentication (should still work for anonymous donations)
+        anonymous_checkout_data = {
+            "package_id": "blessing",
+            "donation_type": "one_time",
+            "message": "Don anonyme",
+            "anonymous": True,
+            "donor_name": "Anonyme",
+            "donor_email": "anonyme@exemple.com",
+            "origin_url": "https://continue-ai.preview.emergentagent.com"
+        }
+        
+        try:
+            # Test without auth headers
+            response = requests.post(f"{BACKEND_URL}/donations/checkout", json=anonymous_checkout_data, timeout=15)
+            if response.status_code == 200:
+                data = response.json()
+                if all(key in data for key in ["url", "session_id", "donation_id"]):
+                    self.log_result("Donations API - Anonymous donation", True, "Anonymous donation checkout created successfully")
+                else:
+                    self.log_result("Donations API - Anonymous donation", False, "Missing required fields in anonymous checkout", data)
+            else:
+                self.log_result("Donations API - Anonymous donation", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Donations API - Anonymous donation", False, f"Request failed: {str(e)}")
         
         print("   Note: Stripe webhook endpoint (/api/webhook/stripe) requires actual Stripe events for testing")
         print("   Success/Cancel URLs are correctly generated in checkout responses")
