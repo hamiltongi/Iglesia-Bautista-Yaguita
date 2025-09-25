@@ -194,6 +194,122 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+# Authentication Routes
+@api_router.post("/auth/register", response_model=Token)
+async def register_user(user_data: UserCreate):
+    """Register a new user"""
+    # Check if user already exists
+    existing_user = await db.users.find_one({"email": user_data.email})
+    if existing_user:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Email already registered"
+        )
+    
+    # Check username uniqueness
+    existing_username = await db.users.find_one({"username": user_data.username})
+    if existing_username:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Username already taken"
+        )
+    
+    # Hash password and create user
+    hashed_password = get_password_hash(user_data.password)
+    user_dict = user_data.dict()
+    del user_dict["password"]
+    
+    new_user = User(**user_dict)
+    user_doc = new_user.dict()
+    user_doc["hashed_password"] = hashed_password
+    
+    try:
+        await db.users.insert_one(user_doc)
+        
+        # Create access token
+        access_token_expires = timedelta(minutes=30)
+        access_token = create_access_token(
+            data={"sub": new_user.email, "user_id": new_user.id, "role": new_user.role},
+            expires_delta=access_token_expires
+        )
+        
+        return Token(
+            access_token=access_token,
+            token_type="bearer",
+            expires_in=1800,  # 30 minutes
+            user=new_user
+        )
+    except Exception as e:
+        logging.error(f"Error creating user: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Error creating user"
+        )
+
+@api_router.post("/auth/login", response_model=Token)
+async def login_user(credentials: UserLogin):
+    """Login user"""
+    user = await db.users.find_one({"email": credentials.email})
+    if not user or not verify_password(credentials.password, user["hashed_password"]):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Incorrect email or password",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    
+    # Check if user is active
+    if user["status"] != UserStatus.ACTIVE:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Account is not active"
+        )
+    
+    # Update last login
+    await db.users.update_one(
+        {"id": user["id"]},
+        {"$set": {"last_login": datetime.utcnow()}}
+    )
+    
+    # Create access token
+    access_token_expires = timedelta(minutes=30)
+    access_token = create_access_token(
+        data={"sub": user["email"], "user_id": user["id"], "role": user["role"]},
+        expires_delta=access_token_expires
+    )
+    
+    user_obj = User(**user)
+    return Token(
+        access_token=access_token,
+        token_type="bearer",
+        expires_in=1800,
+        user=user_obj
+    )
+
+@api_router.get("/auth/me", response_model=User)
+async def get_current_user_profile(current_user: User = Depends(get_current_user)):
+    """Get current user profile"""
+    return current_user
+
+@api_router.put("/auth/profile", response_model=User)
+async def update_user_profile(
+    profile_update: UserUpdate,
+    current_user: User = Depends(get_current_user)
+):
+    """Update user profile"""
+    update_data = profile_update.dict(exclude_unset=True)
+    if update_data:
+        update_data["updated_at"] = datetime.utcnow()
+        await db.users.update_one(
+            {"id": current_user.id},
+            {"$set": update_data}
+        )
+        
+        # Get updated user
+        updated_user = await db.users.find_one({"id": current_user.id})
+        return User(**updated_user)
+    
+    return current_user
+
 # Church Information
 @api_router.get("/church")
 async def get_church_info():
