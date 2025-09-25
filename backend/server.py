@@ -317,6 +317,58 @@ async def update_user_profile(
     
     return current_user
 
+# Donation Routes
+@api_router.get("/donations/packages", response_model=List[DonationPackage])
+async def get_donation_packages():
+    """Get available donation packages"""
+    return donation_service.get_packages()
+
+@api_router.post("/donations/checkout", response_model=CheckoutResponse)
+async def create_donation_checkout(
+    checkout_request: CheckoutRequest,
+    current_user: Optional[User] = Depends(lambda credentials=Depends(security): get_current_user(credentials) if credentials else None)
+):
+    """Create donation checkout session"""
+    user_id = current_user.id if current_user else None
+    user_email = current_user.email if current_user else None
+    
+    return await donation_service.create_checkout_session(
+        checkout_request, 
+        user_id=user_id, 
+        user_email=user_email
+    )
+
+@api_router.get("/donations/status/{session_id}")
+async def get_donation_status(session_id: str):
+    """Check donation payment status"""
+    return await donation_service.check_payment_status(session_id)
+
+@api_router.get("/donations/my-donations", response_model=List[Donation])
+async def get_my_donations(
+    current_user: User = Depends(get_current_user),
+    limit: int = 20
+):
+    """Get current user's donation history"""
+    return await donation_service.get_user_donations(current_user.id, limit)
+
+@api_router.get("/donations/stats")
+async def get_donation_stats(
+    current_user: User = Depends(get_admin_user)
+):
+    """Get donation statistics (admin only)"""
+    return await donation_service.get_donation_stats()
+
+@api_router.post("/webhook/stripe")
+async def stripe_webhook(request: Request):
+    """Handle Stripe webhook events"""
+    body = await request.body()
+    signature = request.headers.get("Stripe-Signature")
+    
+    if not signature:
+        raise HTTPException(status_code=400, detail="Missing Stripe signature")
+    
+    return await donation_service.handle_webhook(body, signature)
+
 # Church Information
 @api_router.get("/church")
 async def get_church_info():
