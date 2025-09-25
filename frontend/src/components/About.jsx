@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from './ui/card';
 import { Heart, Users, BookOpen, Globe } from 'lucide-react';
+import { mockData } from '../mockData';
 
 const About = () => {
   const values = [
