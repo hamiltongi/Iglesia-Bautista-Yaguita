@@ -200,7 +200,7 @@ const Donations = () => {
         }
       }
 
-      const response = await fetch(`${BACKEND_URL}/donations/checkout`, {
+      const response = await fetch(`${BACKEND_URL}/api/donations/checkout`, {
         method: 'POST',
         headers,
         body: JSON.stringify(checkoutData)
