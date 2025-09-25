@@ -34,6 +34,9 @@ app = FastAPI(title="Iglesia Bautista Yaguita de Pastor API")
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
 
+# Initialize donation service
+donation_service = DonationService(db)
+
 # Security
 security = HTTPBearer()
 
