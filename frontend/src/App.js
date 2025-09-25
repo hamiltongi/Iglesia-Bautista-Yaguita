@@ -62,6 +62,7 @@ const App = () => {
             <Route path="/portail-membre" element={<MemberPortal />} />
             <Route path="/dons" element={<Donations />} />
             <Route path="/dons/succes" element={<Donations />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
