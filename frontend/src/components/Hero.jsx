@@ -126,6 +126,16 @@ const Hero = () => {
               <Button 
                 variant="outline" 
                 size="lg" 
+                onClick={() => window.location.href = '/dons'}
+                className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 text-lg transition-all duration-300"
+              >
+                <Heart className="mr-2 h-5 w-5" />
+                Faire un don
+              </Button>
+
+              <Button 
+                variant="outline" 
+                size="lg" 
                 onClick={() => document.getElementById('ministries')?.scrollIntoView({ behavior: 'smooth' })}
                 className="border-amber-600 text-amber-600 hover:bg-amber-50 px-8 py-4 text-lg transition-all duration-300"
               >
