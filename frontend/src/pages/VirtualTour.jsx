@@ -22,42 +22,42 @@ const VirtualTour = () => {
     {
       id: 2,
       name: "Salles de Formation FEPROBA",
-      description: "Espaces modernes dédiés à la formation professionnelle avec équipements spécialisés pour chaque discipline enseignée.",
-      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/kq7blv0c_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg",
+      description: "Espaces modernes dédiés à la formation professionnelle avec équipements spécialisés pour chaque discipline enseignée. Nos élèves bénéficient d'un environnement d'apprentissage optimal.",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/493hz1iz_image.png",
       icon: BookOpen,
       capacity: "25-30 étudiants par salle",
       features: ["Équipements informatiques", "Ateliers techniques", "Laboratoires", "Bibliothèque"],
-      activities: ["Cours d'informatique", "Formation couture", "Ateliers cuisine", "Cours de langues"]
+      activities: ["Formation informatique", "École classique", "Ateliers pratiques", "Cours de langues"]
     },
     {
       id: 3,
-      name: "Auditorium ISL",
-      description: "Auditorium académique pour les cours théologiques et les conférences de l'Institut de Séminaire et Leadership.",
-      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/bgvmbe4j_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg",
+      name: "École Classique FEPROBA",
+      description: "Programme d'éducation primaire et secondaire pour enfants avec uniformes distinctifs. Un environnement éducatif structuré favorisant l'excellence académique et les valeurs chrétiennes.",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/3wrg7d46_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.40.06_b72847db.jpg",
       icon: Users,
-      capacity: "100 étudiants",
-      features: ["Projection moderne", "Système de conférence", "Bibliothèque théologique", "Salles d'étude"],
-      activities: ["Cours de théologie", "Séminaires", "Graduations", "Conférences académiques"]
+      capacity: "200 élèves",
+      features: ["Uniformes scolaires", "Encadrement personnalisé", "Activités parascolaires", "Soutien nutritionnel"],
+      activities: ["Cours académiques", "Activités sportives", "Formation caractère", "Événements éducatifs"]
     },
     {
       id: 4,
-      name: "Studio de Musique",
-      description: "Studio d'enregistrement et de répétition pour le ministère de la musique avec instruments et équipements professionnels.",
-      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/kq7blv0c_Flyer%20Nouvel%20An%20Ouverture%20Restaurant%20Festif.jpg",
-      icon: Music,
-      capacity: "Orchestre de 20 musiciens",
-      features: ["Instruments variés", "Matériel d'enregistrement", "Système de mixage", "Cabines d'isolation"],
-      activities: ["Répétitions chorale", "Enregistrements", "Formation musicale", "Concerts"]
+      name: "Programme Alimentaire",
+      description: "Service de restauration et programme nutritionnel pour les étudiants. Nous veillons à ce que tous nos élèves reçoivent une alimentation équilibrée pendant leur formation.",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/5omceiiz_WhatsApp%20Image%202025-05-21%20%C3%A0%2012.32.51_c2b1885a.jpg",
+      icon: Heart,
+      capacity: "300 repas/jour",
+      features: ["Cuisine moderne", "Menus équilibrés", "Hygiène stricte", "Éducation nutritionnelle"],
+      activities: ["Repas quotidiens", "Éducation nutrition", "Jardinage", "Cours de cuisine"]
     },
     {
       id: 5,
-      name: "Espaces Communautaires",
-      description: "Zones de fellowship et de rassemblement pour les activités sociales et les événements communautaires.",
-      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/bgvmbe4j_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg",
-      icon: Heart,
-      capacity: "200 personnes",
-      features: ["Cuisine communautaire", "Terrasses", "Jardins", "Aire de jeux enfants"],
-      activities: ["Repas communautaires", "Fêtes", "Réunions ministères", "Activités jeunesse"]
+      name: "Activités Éducatives Diverses",
+      description: "Espaces polyvalents pour diverses activités éducatives et récréatives. Nos programmes favorisent le développement intégral de chaque enfant dans un cadre bienveillant.",
+      image: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/1z5lrt8l_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.41.04_be04c3c6.jpg",
+      icon: Users,
+      capacity: "50 enfants par activité",
+      features: ["Espaces modulables", "Matériel éducatif", "Encadrement qualifié", "Sécurité optimale"],
+      activities: ["Jeux éducatifs", "Arts créatifs", "Sciences amusantes", "Développement social"]
     },
     {
       id: 6,
