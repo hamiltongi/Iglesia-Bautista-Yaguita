@@ -94,7 +94,7 @@ const Header = () => {
               ))}
             </nav>
 
-            {/* Auth Buttons */}
+            {/* Auth Buttons and Language Selector */}
             {isAuthenticated ? (
               <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
                 <div className="flex items-center space-x-2">
@@ -114,7 +114,7 @@ const Header = () => {
                   className="flex items-center space-x-2"
                 >
                   <User className="w-4 h-4" />
-                  <span>Mon Portail</span>
+                  <span>{t('portailMembre')}</span>
                 </Button>
                 {user?.role === 'admin' && (
                   <Button
@@ -134,9 +134,11 @@ const Header = () => {
                   variant="ghost"
                   size="sm"
                   className="text-gray-600 hover:text-red-600"
+                  title={t('deconnexion')}
                 >
                   <LogOut className="w-4 h-4" />
                 </Button>
+                <LanguageSelector />
               </div>
             ) : (
               <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
@@ -146,15 +148,16 @@ const Header = () => {
                   size="sm"
                   className="text-gray-700 hover:text-blue-900"
                 >
-                  Connexion
+                  {t('connexion')}
                 </Button>
                 <Button
                   onClick={() => setShowRegisterModal(true)}
                   size="sm"
                   className="bg-blue-600 hover:bg-blue-700 text-white"
                 >
-                  S'inscrire
+                  {t('inscription')}
                 </Button>
+                <LanguageSelector />
               </div>
             )}
           </div>
