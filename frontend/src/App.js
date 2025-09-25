@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // Import components
 import Header from "./components/Header";
@@ -15,23 +15,44 @@ import Gallery from "./components/Gallery";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 
+// Import pages
+import FEPROBAProgrammes from "./pages/FEPROBAProgrammes";
+import ISLSeminaire from "./pages/ISLSeminaire";
+import MinistryDetail from "./pages/MinistryDetail";
+import AdminPanel from "./pages/AdminPanel";
+import VirtualTour from "./pages/VirtualTour";
+
+const HomePage = () => (
+  <>
+    <Header />
+    <main>
+      <Hero />
+      <About />
+      <Services />
+      <FEPROBA />
+      <ISL />
+      <Ministries />
+      <Events />
+      <Gallery />
+      <Contact />
+    </main>
+    <Footer />
+  </>
+);
+
 const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <main>
-          <Hero />
-          <About />
-          <Services />
-          <FEPROBA />
-          <ISL />
-          <Ministries />
-          <Events />
-          <Gallery />
-          <Contact />
-        </main>
-        <Footer />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/feproba-programmes" element={<FEPROBAProgrammes />} />
+          <Route path="/isl-seminaire" element={<ISLSeminaire />} />
+          <Route path="/ministere/:id" element={<MinistryDetail />} />
+          <Route path="/admin" element={<AdminPanel />} />
+          <Route path="/visite-virtuelle" element={<VirtualTour />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </BrowserRouter>
     </div>
   );
