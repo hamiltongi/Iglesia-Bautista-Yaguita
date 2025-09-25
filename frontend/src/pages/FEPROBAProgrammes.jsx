@@ -98,57 +98,78 @@ const FEPROBAProgrammes = () => {
       {/* Programmes Grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {mockData.feproba.disciplines.map((discipline) => (
-            <Card key={discipline.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-amber-200 group">
-              {/* Course Image Placeholder */}
-              <div className="h-48 bg-gradient-to-br from-amber-100 to-orange-100 flex items-center justify-center">
-                <GraduationCap className="w-16 h-16 text-amber-600" />
-              </div>
-              
-              {/* Course Content */}
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <span className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-xs font-medium rounded-full">
-                    {discipline.level}
-                  </span>
-                  <div className="flex items-center text-yellow-500">
-                    <Star className="w-4 h-4 fill-current" />
-                    <Star className="w-4 h-4 fill-current" />
-                    <Star className="w-4 h-4 fill-current" />
-                    <Star className="w-4 h-4 fill-current" />
-                    <Star className="w-4 h-4" />
-                  </div>
+          {mockData.feproba.disciplines.map((discipline) => {
+            // Assign real FEPROBA photos to different disciplines
+            const getImageForDiscipline = (disciplineId) => {
+              const images = {
+                1: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/3wrg7d46_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.40.06_b72847db.jpg", // École classique - enfants uniformes rouges
+                2: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/493hz1iz_image.png", // Informatique - salle ordinateurs
+                3: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/1z5lrt8l_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.41.04_be04c3c6.jpg", // Couture - enfants souriants
+                4: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/2eup2z96_322a8dcb-23be-4d4a-ad48-d511a6930646.jpeg", // Mécanique - bâtiment moderne
+                5: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/5omceiiz_WhatsApp%20Image%202025-05-21%20%C3%A0%2012.32.51_c2b1885a.jpg", // Cuisine - enfants à table
+                6: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/3wrg7d46_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.40.06_b72847db.jpg", // Décoration - activités créatives
+                7: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/1z5lrt8l_WhatsApp%20Image%202025-05-12%20%C3%A0%2015.41.04_be04c3c6.jpg", // Anglais - éducation
+                8: "https://customer-assets.emergentagent.com/job_santiago-baptist/artifacts/493hz1iz_image.png" // Espagnol - formation
+              };
+              return images[disciplineId] || images[1];
+            };
+
+            return (
+              <Card key={discipline.id} className="overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-gray-100 hover:border-amber-200 group">
+                {/* Course Image - Real FEPROBA Photos */}
+                <div className="h-48 overflow-hidden">
+                  <img 
+                    src={getImageForDiscipline(discipline.id)}
+                    alt={discipline.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-700 transition-colors">
-                  {discipline.name}
-                </h3>
-                
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  {discipline.description}
-                </p>
-                
-                <div className="space-y-2 mb-6">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Clock className="w-4 h-4 mr-2 text-amber-600" />
-                    <span>Durée: {discipline.duration}</span>
+                {/* Course Content */}
+                <div className="p-6">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="inline-flex items-center px-3 py-1 bg-amber-100 text-amber-800 text-xs font-medium rounded-full">
+                      {discipline.level}
+                    </span>
+                    <div className="flex items-center text-yellow-500">
+                      <Star className="w-4 h-4 fill-current" />
+                      <Star className="w-4 h-4 fill-current" />
+                      <Star className="w-4 h-4 fill-current" />
+                      <Star className="w-4 h-4 fill-current" />
+                      <Star className="w-4 h-4" />
+                    </div>
                   </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Users className="w-4 h-4 mr-2 text-amber-600" />
-                    <span>Âge: {discipline.age}</span>
+                  
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-amber-700 transition-colors">
+                    {discipline.name}
+                  </h3>
+                  
+                  <p className="text-gray-600 leading-relaxed mb-4">
+                    {discipline.description}
+                  </p>
+                  
+                  <div className="space-y-2 mb-6">
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Clock className="w-4 h-4 mr-2 text-amber-600" />
+                      <span>Durée: {discipline.duration}</span>
+                    </div>
+                    <div className="flex items-center text-sm text-gray-600">
+                      <Users className="w-4 h-4 mr-2 text-amber-600" />
+                      <span>Âge: {discipline.age}</span>
+                    </div>
                   </div>
+                  
+                  <Button 
+                    onClick={() => setSelectedCourse(discipline)}
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-all duration-300"
+                  >
+                    <Mail className="w-4 h-4 mr-2" />
+                    Réserver par Email
+                  </Button>
                 </div>
-                
-                <Button 
-                  onClick={() => setSelectedCourse(discipline)}
-                  className="w-full bg-amber-600 hover:bg-amber-700 text-white transition-all duration-300"
-                >
-                  <Mail className="w-4 h-4 mr-2" />
-                  Réserver par Email
-                </Button>
-              </div>
-            </Card>
-          ))}
+              </Card>
+            );
+          })}
         </div>
 
         {/* Info Section */}
