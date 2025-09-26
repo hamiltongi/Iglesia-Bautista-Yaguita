@@ -318,7 +318,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All systems operational"
+    - "Member Registration API with New Fields - COMPLETED"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
