@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, Phone, Mail, User, LogOut } from 'lucide-react';
-import { Button } from './ui/button';
-import { useAuth } from '../contexts/AuthContext';
-import { useLanguage } from '../contexts/LanguageContext';
-import LanguageSelector from './LanguageSelector';
-import LoginModal from './auth/LoginModal';
-import RegisterModal from './auth/RegisterModal';
+import { Menu, X, Phone, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
