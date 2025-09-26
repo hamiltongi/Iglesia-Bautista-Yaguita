@@ -43,14 +43,14 @@ const AdminDashboard = () => {
       };
 
       // Fetch donation stats
-      const donationResponse = await fetch(`${BACKEND_URL}/donations/stats`, { headers });
+      const donationResponse = await fetch(`${BACKEND_URL}/api/donations/stats`, { headers });
       if (donationResponse.ok) {
         const donationData = await donationResponse.json();
         setStats(prev => ({ ...prev, donations: donationData }));
       }
 
       // Fetch member count
-      const memberResponse = await fetch(`${BACKEND_URL}/members/count`, { headers });
+      const memberResponse = await fetch(`${BACKEND_URL}/api/members/count`, { headers });
       if (memberResponse.ok) {
         const memberData = await memberResponse.json();
         setStats(prev => ({ ...prev, members: memberData }));
