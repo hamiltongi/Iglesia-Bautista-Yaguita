@@ -96,7 +96,7 @@ const Hero = () => {
             <div className="space-y-4">
               <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full text-blue-800 text-sm font-medium">
                 <Heart className="w-4 h-4 mr-2" />
-                {t('bienvenue')}
+                Bienvenue à l'Iglesia Bautista Yaguita de Pastor
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
@@ -106,7 +106,7 @@ const Hero = () => {
               </h1>
               
               <p className="text-xl text-gray-600 leading-relaxed">
-                {t('messageAccueil')}
+                Une communauté de foi, d'espoir et d'amour dans le service de Dieu
               </p>
             </div>
 
@@ -144,7 +144,7 @@ const Hero = () => {
                 className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 text-lg transition-all duration-300"
               >
                 <Heart className="mr-2 h-5 w-5" />
-                {t('faireDon')}
+                Faire un Don
               </Button>
 
               <Button 
@@ -328,7 +328,7 @@ const Hero = () => {
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="niveau_etude_classique" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('niveauEtudeClassique')}
+                      Niveau d'étude classique
                     </label>
                     <select
                       id="niveau_etude_classique"
@@ -347,7 +347,7 @@ const Hero = () => {
                   
                   <div>
                     <label htmlFor="niveau_professionnel" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('niveauProfessionnel')}
+                      Niveau professionnel
                     </label>
                     <select
                       id="niveau_professionnel"
@@ -371,7 +371,7 @@ const Hero = () => {
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="cin_nif_passport" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('cinNifPassport')}
+                      CIN/NIF/Passport
                     </label>
                     <Input
                       type="text"
@@ -386,7 +386,7 @@ const Hero = () => {
                   
                   <div>
                     <label htmlFor="statut_matrimonial" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('statutMatrimonial')}
+                      Statut matrimonial
                     </label>
                     <select
                       id="statut_matrimonial"
@@ -408,7 +408,7 @@ const Hero = () => {
                 <div className="grid md:grid-cols-2 gap-4 mb-4">
                   <div>
                     <label htmlFor="qte_enfants" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('qteEnfants')}
+                      Quantité d'enfants
                     </label>
                     <Input
                       type="number"
@@ -424,7 +424,7 @@ const Hero = () => {
                   
                   <div>
                     <label htmlFor="converti_status" className="block text-sm font-medium text-gray-700 mb-2">
-                      {t('convertiStatus')}
+                      Converti/Baptisé/Chute/En formation
                     </label>
                     <select
                       id="converti_status"
@@ -445,7 +445,7 @@ const Hero = () => {
 
                 <div>
                   <label htmlFor="don_ministeriel" className="block text-sm font-medium text-gray-700 mb-2">
-                    {t('donMinisteriel')}
+                    Vos dons ministériels
                   </label>
                   <textarea
                     id="don_ministeriel"
