@@ -16,20 +16,6 @@ const Header = () => {
     { name: 'Contact', href: '#contact' }
   ];
 
-  const switchToRegister = () => {
-    setShowLoginModal(false);
-    setShowRegisterModal(true);
-  };
-
-  const switchToLogin = () => {
-    setShowRegisterModal(false);
-    setShowLoginModal(true);
-  };
-
-  const handlePortalAccess = () => {
-    window.location.href = '/portail-membre';
-  };
-
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
       {/* Top bar with contact info */}
@@ -82,85 +68,16 @@ const Header = () => {
                 </a>
               ))}
             </nav>
-
-            {/* Auth Buttons and Language Selector */}
-            {isAuthenticated ? (
-              <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                    <span className="text-white text-sm font-medium">
-                      {user?.first_name?.[0]}{user?.last_name?.[0]}
-                    </span>
-                  </div>
-                  <span className="text-sm font-medium text-gray-700">
-                    {user?.first_name}
-                  </span>
-                </div>
-                <Button
-                  onClick={handlePortalAccess}
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center space-x-2"
-                >
-                  <User className="w-4 h-4" />
-                  <span>{t('portailMembre')}</span>
-                </Button>
-                {user?.role === 'admin' && (
-                  <Button
-                    onClick={() => window.location.href = '/admin-dashboard'}
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center space-x-2 border-purple-600 text-purple-600 hover:bg-purple-50"
-                  >
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                    </svg>
-                    <span>Admin</span>
-                  </Button>
-                )}
-                <Button
-                  onClick={logout}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-600 hover:text-red-600"
-                  title={t('deconnexion')}
-                >
-                  <LogOut className="w-4 h-4" />
-                </Button>
-                <LanguageSelector />
-              </div>
-            ) : (
-              <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-gray-200">
-                <Button
-                  onClick={() => setShowLoginModal(true)}
-                  variant="ghost"
-                  size="sm"
-                  className="text-gray-700 hover:text-blue-900"
-                >
-                  {t('connexion')}
-                </Button>
-                <Button
-                  onClick={() => setShowRegisterModal(true)}
-                  size="sm"
-                  className="bg-blue-600 hover:bg-blue-700 text-white"
-                >
-                  {t('inscription')}
-                </Button>
-                <LanguageSelector />
-              </div>
-            )}
           </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden">
-            <Button
-              variant="ghost"
-              size="sm"
+            <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-700"
+              className="p-2 rounded-md text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </Button>
+            </button>
           </div>
         </div>
       </div>
@@ -173,83 +90,15 @@ const Header = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
+                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </a>
             ))}
-            
-            {/* Mobile Auth Buttons */}
-            <div className="pt-4 mt-4 border-t border-gray-200 space-y-2">
-              {isAuthenticated ? (
-                <>
-                  <div className="flex items-center space-x-3 px-3 py-2">
-                    <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
-                      <span className="text-white text-sm font-medium">
-                        {user?.first_name?.[0]}{user?.last_name?.[0]}
-                      </span>
-                    </div>
-                    <span className="text-sm font-medium text-gray-700">
-                      {user?.first_name} {user?.last_name}
-                    </span>
-                  </div>
-                  <Button
-                    onClick={handlePortalAccess}
-                    variant="outline"
-                    className="w-full justify-start"
-                  >
-                    <User className="w-4 h-4 mr-2" />
-                    Mon Portail
-                  </Button>
-                  <Button
-                    onClick={logout}
-                    variant="ghost"
-                    className="w-full justify-start text-red-600 hover:text-red-700 hover:bg-red-50"
-                  >
-                    <LogOut className="w-4 h-4 mr-2" />
-                    Se déconnecter
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button
-                    onClick={() => {
-                      setShowLoginModal(true);
-                      setIsMenuOpen(false);
-                    }}
-                    variant="ghost"
-                    className="w-full justify-start"
-                  >
-                    Connexion
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      setShowRegisterModal(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                  >
-                    S'inscrire
-                  </Button>
-                </>
-              )}
-            </div>
           </div>
         </div>
       )}
-      
-      {/* Auth Modals */}
-      <LoginModal
-        isOpen={showLoginModal}
-        onClose={() => setShowLoginModal(false)}
-        switchToRegister={switchToRegister}
-      />
-      <RegisterModal
-        isOpen={showRegisterModal}
-        onClose={() => setShowRegisterModal(false)}
-        switchToLogin={switchToLogin}
-      />
     </header>
   );
 };
