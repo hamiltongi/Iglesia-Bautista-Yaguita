@@ -7,7 +7,6 @@ import { mockData } from '../mockData';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Hero = () => {
-  const { t } = useLanguage();
   const [showRegistration, setShowRegistration] = useState(false);
   const [registrationData, setRegistrationData] = useState({
     name: '',
