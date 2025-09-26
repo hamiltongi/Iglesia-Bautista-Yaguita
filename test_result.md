@@ -234,6 +234,21 @@ backend:
         - agent: "testing"
         - comment: "✅ PROBLÈME RÉSOLU - SYSTÈME DE DONS OPÉRATIONNEL (Janvier 2025) - Suite à la configuration de la nouvelle clé Stripe API valide dans /app/backend/.env. TESTS COMPLETS RÉUSSIS: (1) GET /api/donations/packages: ✅ PARFAIT - récupère les 5 packages requis (blessing $25, support $50, generosity $100, partnership $250, custom $0), (2) POST /api/donations/checkout avec package support ($50): ✅ SUCCÈS - session Stripe créée avec ID cs_test_a1C0EazJmhRe2naWqnvMw5kLTuqqduXFBo4ZbLf4zEBwQ1w3T7i0LK7blV et URL checkout valide, (3) POST /api/donations/checkout avec montant personnalisé ($75): ✅ SUCCÈS - session créée avec ID cs_test_a1TZHucjDfIkPJSo0EZUxfy7o3fZNlhhhbEhuynU2RED3Gz6sEmLxZ2A1j, (4) GET /api/donations/status/{session_id}: ✅ SUCCÈS - statut 'unpaid' récupéré avec montant $50.0 USD correct. LOGS BACKEND: Stripe API responses code=200, sessions créées avec succès. CONCLUSION: Le système de dons fonctionne parfaitement avec la nouvelle clé Stripe. L'utilisateur peut maintenant accéder au système de dons frontend. Taux de réussite: 7/7 tests (100%)."
 
+  - task: "Member Registration API with New Fields"
+    implemented: true
+    working: true
+    file: "server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+        - agent: "main"
+        - comment: "Endpoint POST /api/members/register implémenté avec nouveaux champs: niveau_etude_classique, niveau_professionnel, cin_nif_passport, statut_matrimonial, qte_enfants, converti_status, don_ministeriel. Validation email unique et sauvegarde MongoDB."
+        - working: true
+        - agent: "testing"
+        - comment: "✅ TESTÉ AVEC SUCCÈS - POST /api/members/register fonctionne parfaitement avec tous les nouveaux champs. Tests réussis: (1) Inscription valide avec données complètes (Jean Testeur, jean.testeur@example.com, +1829123456, niveau_etude_classique: superieur, niveau_professionnel: employe, statut_matrimonial: marie, qte_enfants: 2, converti_status: baptise) - membre créé avec ID unique et tous les champs sauvegardés, (2) Email dupliqué - rejette correctement avec HTTP 400, (3) Email invalide - validation avec HTTP 422, (4) Champs manquants - rejette les données incomplètes avec HTTP 422. Logs backend confirment l'enregistrement réussi. Taux de réussite: 4/4 tests (100%)."
+
 frontend:
   - task: "Contact Form Integration"
     implemented: true
