@@ -3,22 +3,17 @@ import { Menu, X, Phone, Mail } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showRegisterModal, setShowRegisterModal] = useState(false);
-  
-  const { user, logout, isAuthenticated } = useAuth();
-  const { t } = useLanguage();
 
   const navigation = [
-    { name: t('accueil'), href: '#home' },
-    { name: t('apropos'), href: '#about' },
-    { name: t('services'), href: '#services' },
-    { name: t('feproba'), href: '#feproba' },
-    { name: t('isl'), href: '#isl' },
-    { name: t('ministeres'), href: '#ministries' },
-    { name: t('evenements'), href: '#events' },
-    { name: t('galerie'), href: '#gallery' },
-    { name: t('contact'), href: '#contact' }
+    { name: 'Accueil', href: '#home' },
+    { name: 'À Propos', href: '#about' },
+    { name: 'Services', href: '#services' },
+    { name: 'FEPROBA', href: '#feproba' },
+    { name: 'ISL', href: '#isl' },
+    { name: 'Ministères', href: '#ministries' },
+    { name: 'Événements', href: '#events' },
+    { name: 'Galerie', href: '#gallery' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   const switchToRegister = () => {
