@@ -5,7 +5,7 @@ export const mockData = {
     address: "Avenida Nunez de Carcerez #9, Santiago RD",
     founded: "2011",
     years: "14",
-    imageUrl: "https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/vz6rs1hg_igreja%20(2).jpeg",
+    imageUrl: "https://images.unsplash.com/photo-1519491050282-cf00c82424b4?w=800&h=600&fit=crop&crop=center",
     pastor: {
       name: "Pasteur Smith Dumont",
       phone: "+1 (829) 295-5254",
