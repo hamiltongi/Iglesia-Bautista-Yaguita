@@ -144,6 +144,14 @@ class Member(BaseModel):
     address: Optional[str] = None
     birth_date: Optional[str] = None
     profession: Optional[str] = None
+    # Nouveaux champs demandés
+    niveau_etude_classique: Optional[str] = None
+    niveau_professionnel: Optional[str] = None
+    cin_nif_passport: Optional[str] = None
+    statut_matrimonial: Optional[str] = None
+    qte_enfants: Optional[int] = None
+    converti_status: Optional[str] = None
+    don_ministeriel: Optional[str] = None
     registration_date: datetime = Field(default_factory=datetime.utcnow)
     active: bool = True
 
@@ -154,6 +162,14 @@ class MemberCreate(BaseModel):
     address: Optional[str] = None
     birth_date: Optional[str] = None
     profession: Optional[str] = None
+    # Nouveaux champs demandés
+    niveau_etude_classique: Optional[str] = None
+    niveau_professionnel: Optional[str] = None
+    cin_nif_passport: Optional[str] = None
+    statut_matrimonial: Optional[str] = None
+    qte_enfants: Optional[int] = None
+    converti_status: Optional[str] = None
+    don_ministeriel: Optional[str] = None
 
 # Course Reservation Models
 class CourseReservation(BaseModel):
