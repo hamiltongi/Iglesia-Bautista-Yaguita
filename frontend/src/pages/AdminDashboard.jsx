@@ -162,7 +162,35 @@ const AdminDashboard = () => {
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Church Info Card with Image */}
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+          <div className="relative">
+            <img 
+              src={mockData.church.imageUrl} 
+              alt={mockData.church.name}
+              className="w-full h-48 object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div className="absolute bottom-4 left-4 text-white">
+              <h3 className="text-lg font-bold">{mockData.church.name}</h3>
+              <p className="text-sm opacity-90">Fondée en {mockData.church.founded}</p>
+            </div>
+          </div>
+          <div className="p-6">
+            <div className="flex items-center space-x-3 mb-3">
+              <Church className="w-5 h-5 text-blue-600" />
+              <span className="font-medium text-gray-900">{mockData.church.years} ans de service</span>
+            </div>
+            <p className="text-gray-600 text-sm">
+              {mockData.church.address}
+            </p>
+            <p className="text-gray-600 text-sm">
+              {mockData.church.location}
+            </p>
+          </div>
+        </div>
+
         <div className="bg-white rounded-xl shadow-lg p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-4">Aperçu des Dons</h3>
           <div className="space-y-4">
