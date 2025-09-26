@@ -82,6 +82,23 @@ const AdminDashboard = () => {
 
   const renderOverview = () => (
     <div className="space-y-6">
+      {/* Church Info Card with Image - Always visible */}
+      <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+        <div className="relative">
+          <img 
+            src={mockData.church.imageUrl} 
+            alt={mockData.church.name}
+            className="w-full h-64 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+          <div className="absolute bottom-4 left-4 text-white">
+            <h3 className="text-2xl font-bold">{mockData.church.name}</h3>
+            <p className="text-lg opacity-90">Fondée en {mockData.church.founded} • {mockData.church.years} ans de service</p>
+            <p className="text-sm opacity-80 mt-1">{mockData.church.address}, {mockData.church.location}</p>
+          </div>
+        </div>
+      </div>
+
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white rounded-xl shadow-lg p-6">
