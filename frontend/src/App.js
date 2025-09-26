@@ -48,26 +48,24 @@ const HomePage = () => (
 const App = () => {
   return (
     <div className="App">
-      <LanguageProvider>
-        <AuthProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/feproba-programmes" element={<FEPROBAProgrammes />} />
-              <Route path="/isl-seminaire" element={<ISLSeminaire />} />
-              <Route path="/ministere/:id" element={<MinistryDetail />} />
-              <Route path="/admin" element={<AdminPanel />} />
-              <Route path="/visite-virtuelle" element={<VirtualTour />} />
-              <Route path="/leadership" element={<Leadership />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/portail-membre" element={<MemberPortal />} />
-              <Route path="/dons" element={<Donations />} />
-              <Route path="/dons/succes" element={<Donations />} />
-              <Route path="/admin-dashboard" element={<AdminDashboard />} />
-            </Routes>
-          </BrowserRouter>
-        </AuthProvider>
-      </LanguageProvider>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/feproba-programmes" element={<FEPROBAProgrammes />} />
+            <Route path="/isl-seminaire" element={<ISLSeminaire />} />
+            <Route path="/ministere/:id" element={<MinistryDetail />} />
+            <Route path="/admin" element={<AdminPanel />} />
+            <Route path="/visite-virtuelle" element={<VirtualTour />} />
+            <Route path="/leadership" element={<Leadership />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/portail-membre" element={<MemberPortal />} />
+            <Route path="/dons" element={<Donations />} />
+            <Route path="/dons/succes" element={<Donations />} />
+            <Route path="/admin-dashboard" element={<AdminDashboard />} />
+          </Routes>
+        </BrowserRouter>
+      </AuthProvider>
     </div>
   );
 };
