@@ -573,6 +573,122 @@ class BackendTester:
         print("   Note: Stripe webhook endpoint (/api/webhook/stripe) requires actual Stripe events for testing")
         print("   Success/Cancel URLs are correctly generated in checkout responses")
     
+    def test_member_registration_api(self):
+        """Test Member Registration API - POST /api/members/register with new fields"""
+        print("\n=== Testing Member Registration API ===")
+        
+        # Generate unique email for testing
+        unique_email = f"jean.testeur.{uuid.uuid4().hex[:8]}@example.com"
+        
+        # Test 1: Valid member registration with all new fields
+        member_data = {
+            "name": "Jean Testeur",
+            "email": unique_email,
+            "phone": "+1829123456",
+            "niveau_etude_classique": "superieur",
+            "niveau_professionnel": "employe",
+            "statut_matrimonial": "marie",
+            "qte_enfants": 2,
+            "converti_status": "baptise",
+            "address": "123 Rue Test, Santiago",
+            "birth_date": "1985-05-15",
+            "profession": "Ingénieur",
+            "cin_nif_passport": "001-1234567-8",
+            "don_ministeriel": "enseignement"
+        }
+        
+        try:
+            response = requests.post(f"{BACKEND_URL}/members/register", json=member_data, timeout=10)
+            if response.status_code == 200:
+                data = response.json()
+                # Check if all required fields are present in response
+                required_fields = ["id", "name", "email", "phone", "niveau_etude_classique", 
+                                 "niveau_professionnel", "statut_matrimonial", "qte_enfants", 
+                                 "converti_status", "registration_date", "active"]
+                
+                if all(key in data for key in required_fields):
+                    # Verify the data matches what was sent
+                    if (data["name"] == member_data["name"] and 
+                        data["email"] == member_data["email"] and
+                        data["phone"] == member_data["phone"] and
+                        data["niveau_etude_classique"] == member_data["niveau_etude_classique"] and
+                        data["niveau_professionnel"] == member_data["niveau_professionnel"] and
+                        data["statut_matrimonial"] == member_data["statut_matrimonial"] and
+                        data["qte_enfants"] == member_data["qte_enfants"] and
+                        data["converti_status"] == member_data["converti_status"] and
+                        data["active"] == True):
+                        self.log_result("Member Registration - Valid registration with new fields", True, 
+                                      f"Member registered successfully with ID: {data['id']}")
+                    else:
+                        self.log_result("Member Registration - Valid registration with new fields", False, 
+                                      "Data mismatch in response", data)
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_result("Member Registration - Valid registration with new fields", False, 
+                                  f"Missing required fields: {missing_fields}", data)
+            else:
+                self.log_result("Member Registration - Valid registration with new fields", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Member Registration - Valid registration with new fields", False, 
+                          f"Request failed: {str(e)}")
+        
+        # Test 2: Duplicate email registration (should fail)
+        try:
+            response = requests.post(f"{BACKEND_URL}/members/register", json=member_data, timeout=10)
+            if response.status_code == 400:
+                self.log_result("Member Registration - Duplicate email validation", True, 
+                              "Correctly rejected duplicate email registration")
+            else:
+                self.log_result("Member Registration - Duplicate email validation", False, 
+                              f"Expected 400, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Member Registration - Duplicate email validation", False, 
+                          f"Request failed: {str(e)}")
+        
+        # Test 3: Invalid email format
+        invalid_member_data = {
+            "name": "Test User",
+            "email": "invalid-email-format",
+            "phone": "+1829123456",
+            "niveau_etude_classique": "superieur",
+            "niveau_professionnel": "employe",
+            "statut_matrimonial": "marie",
+            "qte_enfants": 2,
+            "converti_status": "baptise"
+        }
+        
+        try:
+            response = requests.post(f"{BACKEND_URL}/members/register", json=invalid_member_data, timeout=10)
+            if response.status_code == 422:  # Validation error expected
+                self.log_result("Member Registration - Invalid email validation", True, 
+                              "Correctly rejected invalid email format")
+            else:
+                self.log_result("Member Registration - Invalid email validation", False, 
+                              f"Expected 422, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Member Registration - Invalid email validation", False, 
+                          f"Request failed: {str(e)}")
+        
+        # Test 4: Missing required fields
+        incomplete_member_data = {
+            "name": "Test User",
+            "email": f"incomplete.{uuid.uuid4().hex[:8]}@example.com"
+            # Missing phone and other required fields
+        }
+        
+        try:
+            response = requests.post(f"{BACKEND_URL}/members/register", json=incomplete_member_data, timeout=10)
+            if response.status_code == 422:  # Validation error expected
+                self.log_result("Member Registration - Missing required fields", True, 
+                              "Correctly rejected incomplete member data")
+            else:
+                self.log_result("Member Registration - Missing required fields", False, 
+                              f"Expected 422, got {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Member Registration - Missing required fields", False, 
+                          f"Request failed: {str(e)}")
+
     def test_root_endpoint(self):
         """Test root API endpoint"""
         print("\n=== Testing Root Endpoint ===")
