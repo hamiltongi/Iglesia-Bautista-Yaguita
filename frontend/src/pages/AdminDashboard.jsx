@@ -10,10 +10,12 @@ import {
   Settings,
   BarChart3,
   PieChart,
-  Activity
+  Activity,
+  Church
 } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { mockData } from '../mockData';
 
 const AdminDashboard = () => {
   const { user, isAuthenticated } = useAuth();
