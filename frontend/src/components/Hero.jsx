@@ -8,6 +8,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 const Hero = () => {
+  const { t } = useLanguage();
   const [showRegistration, setShowRegistration] = useState(false);
   const [registrationData, setRegistrationData] = useState({
     name: '',
@@ -15,7 +16,15 @@ const Hero = () => {
     phone: '',
     address: '',
     birthDate: '',
-    profession: ''
+    profession: '',
+    // Nouveaux champs demandés
+    niveau_etude_classique: '',
+    niveau_professionnel: '',
+    cin_nif_passport: '',
+    statut_matrimonial: '',
+    qte_enfants: '',
+    converti_status: '',
+    don_ministeriel: ''
   });
   const [loading, setLoading] = useState(false);
   const [registrationStatus, setRegistrationStatus] = useState(null);
