@@ -25,7 +25,7 @@ const AdminDashboard = () => {
     events: { upcoming: 0, total: 4 },
     contacts: { new: 0 }
   });
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [activeTab, setActiveTab] = useState('overview');
 
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
