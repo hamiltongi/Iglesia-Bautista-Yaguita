@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { ArrowRight, Heart, Users, BookOpen, UserPlus, CheckCircle, Loader2 } from 'lucide-react';
 import { mockData } from '../mockData';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
