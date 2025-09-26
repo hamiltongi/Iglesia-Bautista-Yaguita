@@ -11,15 +11,7 @@ const RegisterModal = ({ isOpen, onClose, switchToLogin }) => {
     confirmPassword: '',
     first_name: '',
     last_name: '',
-    phone: '',
-    // Nouveaux champs optionnels
-    niveau_etude_classique: '',
-    niveau_professionnel: '',
-    cin_nif_passport: '',
-    statut_matrimonial: '',
-    qte_enfants: '',
-    converti_status: '',
-    don_ministeriel: ''
+    phone: ''
   });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
