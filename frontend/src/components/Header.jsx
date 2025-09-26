@@ -13,7 +13,8 @@ const Header = () => {
     { name: 'Ministères', href: '#ministries' },
     { name: 'Événements', href: '#events' },
     { name: 'Galerie', href: '#gallery' },
-    { name: 'Contact', href: '#contact' }
+    { name: 'Contact', href: '#contact' },
+    { name: 'Dashboard', href: '/admin-dashboard' }
   ];
 
   return (
