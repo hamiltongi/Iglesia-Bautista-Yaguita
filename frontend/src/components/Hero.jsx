@@ -81,7 +81,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 overflow-hidden">
+    <section id="home" className="relative min-h-screen bg-gradient-to-br from-blue-50 via-white to-amber-50 overflow-hidden w-full">
       {/* Background decorative elements */}
       <div className="absolute inset-0">
         <div className="absolute top-10 left-10 w-32 h-32 bg-blue-100 rounded-full opacity-30 animate-pulse"></div>
@@ -89,7 +89,7 @@ const Hero = () => {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-blue-200 rounded-full opacity-20 animate-bounce"></div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16">
+      <div className="relative w-full mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center min-h-[70vh] sm:min-h-[80vh]">
           {/* Left content */}
           <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
