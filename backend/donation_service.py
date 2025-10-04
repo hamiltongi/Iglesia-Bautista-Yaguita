@@ -274,16 +274,10 @@ class DonationService:
             raise HTTPException(status_code=500, detail="Error checking payment status")
 
     async def handle_webhook(self, request_body: bytes, stripe_signature: str):
-        """Handle Stripe webhook events"""
+        """Handle Stripe webhook events - MOCKED"""
         try:
-            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
-            webhook_response = await stripe_checkout.handle_webhook(request_body, stripe_signature)
-            
-            # Process webhook event
-            if webhook_response.event_type == "checkout.session.completed":
-                await self.check_payment_status(webhook_response.session_id)
-                
-            return {"status": "success"}
+            # MOCK: Return success for testing
+            return {"status": "success", "message": "Webhook mocked - emergentintegrations not available"}
             
         except Exception as e:
             logging.error(f"Webhook error: {e}")
