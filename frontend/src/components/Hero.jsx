@@ -115,7 +115,7 @@ const Hero = () => {
             <div className="grid grid-cols-3 gap-3 sm:gap-6">
               <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-2xl sm:text-3xl font-bold text-blue-900">342+</div>
-                <div className="text-xs sm:text-sm text-gray-600 font-medium">Membres inscrits</div>
+                <div className="text-sm sm:text-base text-gray-600 font-medium">Membres inscrits</div>
               </div>
               <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-2xl sm:text-3xl font-bold text-amber-600">14</div>
