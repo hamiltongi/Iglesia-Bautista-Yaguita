@@ -155,7 +155,7 @@ const Hero = () => {
                   variant="outline" 
                   size="lg" 
                   onClick={() => document.getElementById('ministries')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="w-full border-2 border-amber-600 text-amber-600 hover:bg-amber-50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                  className="w-full border-2 border-amber-600 text-amber-600 hover:bg-amber-50 px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl transition-all duration-300 hover:scale-105 active:scale-95 min-h-[56px]"
                 >
                   <BookOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="font-medium">Explorer nos Ministères</span>
