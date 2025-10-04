@@ -199,10 +199,10 @@ const Hero = () => {
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-full sm:max-w-2xl max-h-[95vh] overflow-y-auto mx-2 sm:mx-4">
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200 sticky top-0 bg-white">
-              <h3 className="text-2xl font-bold text-gray-900">S'enregistrer dans la grande famille</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">S'enregistrer dans la grande famille</h3>
               <button
                 onClick={() => setShowRegistration(false)}
-                className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+                className="p-3 hover:bg-gray-100 rounded-full transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
               >
                 <X className="w-5 h-5" />
               </button>
