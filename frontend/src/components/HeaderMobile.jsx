@@ -48,8 +48,8 @@ const HeaderMobile = () => {
               className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
             />
             <div>
-              <h1 className="text-base sm:text-lg font-bold text-blue-900 leading-tight">Iglesia Bautista</h1>
-              <p className="text-xs text-blue-700">Yaguita de Pastor</p>
+              <h1 className="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Iglesia Bautista</h1>
+              <p className="text-sm text-blue-700">Yaguita de Pastor</p>
             </div>
           </div>
 
