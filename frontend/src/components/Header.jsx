@@ -19,18 +19,22 @@ const Header = () => {
 
   return (
     <header className="bg-white shadow-lg sticky top-0 z-50">
-      {/* Top bar with contact info */}
+      {/* Top bar with contact info - Optimized for mobile */}
       <div className="bg-blue-900 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center text-sm">
-            <div className="flex items-center space-x-6">
-              <div className="flex items-center space-x-2">
-                <Phone size={14} />
-                <span>+1 (829) 295-5254</span>
+          <div className="flex justify-between items-center text-xs sm:text-sm">
+            {/* Mobile: Show only phone */}
+            <div className="flex items-center space-x-2 sm:space-x-6">
+              <div className="flex items-center space-x-1 sm:space-x-2">
+                <Phone size={12} className="sm:w-[14px] sm:h-[14px]" />
+                <span className="hidden sm:inline">+1 (829) 295-5254</span>
+                <span className="sm:hidden">+1 829-295-5254</span>
               </div>
-              <div className="flex items-center space-x-2">
+              {/* Email only visible on larger screens */}
+              <div className="hidden sm:flex items-center space-x-2">
                 <Mail size={14} />
-                <span>ibautistayaguitadelpastor@gmail.com</span>
+                <span className="hidden md:inline">ibautistayaguitadelpastor@gmail.com</span>
+                <span className="md:hidden">Contact</span>
               </div>
             </div>
             <div className="hidden md:block">
@@ -40,19 +44,19 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Main header */}
+      {/* Main header - Better mobile layout */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          {/* Logo */}
-          <div className="flex items-center space-x-3">
+        <div className="flex justify-between items-center py-3 sm:py-4">
+          {/* Logo - More compact on mobile */}
+          <div className="flex items-center space-x-2 sm:space-x-3">
             <img 
               src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/m9yrtrgf_Add_a_heading-removebg-preview.png" 
               alt="Logo Iglesia Bautista" 
-              className="h-16 w-16 object-contain"
+              className="h-12 w-12 sm:h-16 sm:w-16 object-contain"
             />
             <div>
-              <h1 className="text-xl font-bold text-blue-900">Iglesia Bautista</h1>
-              <p className="text-sm text-blue-700">Yaguita de Pastor</p>
+              <h1 className="text-lg sm:text-xl font-bold text-blue-900 leading-tight">Iglesia Bautista</h1>
+              <p className="text-xs sm:text-sm text-blue-700">Yaguita de Pastor</p>
             </div>
           </div>
 
@@ -71,13 +75,13 @@ const Header = () => {
             </nav>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - More prominent */}
           <div className="lg:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
+              className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm"
             >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
