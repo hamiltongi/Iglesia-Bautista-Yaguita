@@ -77,45 +77,45 @@ const Contact = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-16">
-          {/* Contact Information */}
-          <div className="space-y-8">
+          {/* Contact Information - Mobile optimized */}
+          <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Informations de Contact</h3>
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Informations de Contact</h3>
               
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {/* Address */}
-                <div className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <MapPin className="w-6 h-6 text-blue-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gray-50 rounded-xl">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Adresse</h4>
-                    <p className="text-gray-600">{mockData.church.address}</p>
-                    <p className="text-gray-600">{mockData.church.location}</p>
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Adresse</h4>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{mockData.church.address}</p>
+                    <p className="text-gray-600 text-sm sm:text-base">{mockData.church.location}</p>
                   </div>
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-6 h-6 text-blue-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gray-50 rounded-xl">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">Téléphone</h4>
-                    <a href={`tel:${mockData.church.pastor.phone}`} className="text-blue-600 hover:text-blue-700 transition-colors">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">Téléphone</h4>
+                    <a href={`tel:${mockData.church.pastor.phone}`} className="text-blue-600 hover:text-blue-700 transition-colors text-sm sm:text-base font-medium">
                       {mockData.church.pastor.phone}
                     </a>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start space-x-4 p-6 bg-gray-50 rounded-xl">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <Mail className="w-6 h-6 text-blue-600" />
+                <div className="flex items-start space-x-3 sm:space-x-4 p-4 sm:p-6 bg-gray-50 rounded-xl">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2">E-mail</h4>
-                    <a href={`mailto:${mockData.church.pastor.email}`} className="text-blue-600 hover:text-blue-700 transition-colors block">
+                  <div className="min-w-0">
+                    <h4 className="font-semibold text-gray-900 mb-1 sm:mb-2 text-sm sm:text-base">E-mail</h4>
+                    <a href={`mailto:${mockData.church.pastor.email}`} className="text-blue-600 hover:text-blue-700 transition-colors block text-sm sm:text-base font-medium break-all">
                       {mockData.church.pastor.email}
                     </a>
                     <a href={`mailto:${mockData.church.pastor.alternateEmail}`} className="text-blue-600 hover:text-blue-700 transition-colors block">
