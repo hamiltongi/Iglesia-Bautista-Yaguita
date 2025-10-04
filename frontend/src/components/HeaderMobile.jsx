@@ -18,10 +18,10 @@ const HeaderMobile = () => {
   ];
 
   return (
-    <header className="bg-white shadow-lg sticky top-0 z-50">
+    <header className="bg-white shadow-lg sticky top-0 z-50 w-full">
       {/* Compact contact bar for mobile */}
       <div className="bg-blue-900 text-white py-2">
-        <div className="max-w-7xl mx-auto px-4">
+        <div className="w-full mx-auto px-4">
           <div className="flex justify-between items-center text-xs">
             <div className="flex items-center space-x-3">
               <div className="flex items-center space-x-1">
