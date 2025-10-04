@@ -35,20 +35,34 @@
 
 /* Mobile Navigation Classes */
 .mobile-nav-only {
-  display: flex;
+  display: flex !important;
 }
 
 .desktop-nav-only {
-  display: none;
+  display: none !important;
 }
 
 /* Desktop only - hide mobile, show desktop */
 @media (min-width: 1280px) {
   .mobile-nav-only {
-    display: none;
+    display: none !important;
   }
   
   .desktop-nav-only {
-    display: flex;
+    display: flex !important;
+  }
+}
+
+/* Force hide desktop navigation on mobile devices */
+@media (max-width: 1279px) {
+  .desktop-nav-only,
+  .desktop-nav-only * {
+    display: none !important;
+    visibility: hidden !important;
+  }
+  
+  .mobile-nav-only {
+    display: flex !important;
+    visibility: visible !important;
   }
 }
