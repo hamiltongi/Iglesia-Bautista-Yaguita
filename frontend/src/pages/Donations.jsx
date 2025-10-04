@@ -331,9 +331,9 @@ const Donations = () => {
             )}
           </div>
 
-          {/* Donation Form */}
-          <div className="bg-white rounded-xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Vos informations</h2>
+          {/* Donation Form - Mobile optimized */}
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-md sm:shadow-lg p-4 sm:p-6 lg:p-8 order-1 lg:order-2">
+            <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Vos informations</h2>
             
             {error && (
               <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg flex items-start space-x-3">
