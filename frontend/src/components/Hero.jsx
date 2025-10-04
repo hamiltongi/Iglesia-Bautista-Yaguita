@@ -100,7 +100,7 @@ const Hero = () => {
                 <span className="sm:hidden">Bienvenue à l'Iglesia Bautista</span>
               </div>
               
-              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 leading-tight">
                 <span className="text-blue-900">Église Baptiste</span>
                 <br />
                 <span className="text-amber-600">Yaguita de Pastor</span>
