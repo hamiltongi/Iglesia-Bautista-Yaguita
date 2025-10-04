@@ -71,31 +71,28 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation - Force hide on mobile with inline styles */}
-          <div 
-            className="desktop-nav-only"
-            style={{ display: window.innerWidth < 1280 ? 'none' : 'flex' }}
-          >
-            <nav className="flex items-center space-x-4">
-              <div className="flex space-x-1">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
-                  >
-                    {item.name}
-                  </a>
-                ))}
-              </div>
-            </nav>
-          </div>
+          {/* Desktop Navigation - Conditionally rendered */}
+          {!isMobile && (
+            <div className="desktop-nav-only">
+              <nav className="flex items-center space-x-4">
+                <div className="flex space-x-1">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+              </nav>
+            </div>
+          )}
 
-          {/* Mobile menu button - Force show on mobile */}
-          <div 
-            className="mobile-nav-only"
-            style={{ display: window.innerWidth < 1280 ? 'flex' : 'none' }}
-          >
+          {/* Mobile menu button - Show only on mobile */}
+          {isMobile && (
+            <div className="mobile-nav-only">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm bg-white"
