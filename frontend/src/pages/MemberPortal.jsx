@@ -14,7 +14,7 @@ import {
   Briefcase,
   Gift
 } from 'lucide-react';
-import Header from '../components/Header';
+import ResponsiveHeader from '../components/ResponsiveHeader';
 import Footer from '../components/Footer';
 
 const MemberPortal = () => {
