@@ -93,19 +93,20 @@ const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
           {/* Left content */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center px-4 py-2 bg-blue-100 rounded-full text-blue-800 text-sm font-medium">
-                <Heart className="w-4 h-4 mr-2" />
-                Bienvenue à l'Iglesia Bautista Yaguita de Pastor
+            <div className="space-y-4 sm:space-y-6">
+              <div className="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-100 rounded-full text-blue-800 text-xs sm:text-sm font-medium">
+                <Heart className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span className="hidden sm:inline">Bienvenue à l'Iglesia Bautista Yaguita de Pastor</span>
+                <span className="sm:hidden">Bienvenue à l'Iglesia Bautista</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
                 <span className="text-blue-900">Église Baptiste</span>
                 <br />
                 <span className="text-amber-600">Yaguita de Pastor</span>
               </h1>
               
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
                 Une communauté de foi, d'espoir et d'amour dans le service de Dieu
               </p>
             </div>
