@@ -256,7 +256,7 @@ frontend:
     file: "ResponsiveHeader.jsx, HeaderMobile.jsx, Hero.jsx, Contact.jsx"
     stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
         - working: "NA"
         - agent: "testing"
