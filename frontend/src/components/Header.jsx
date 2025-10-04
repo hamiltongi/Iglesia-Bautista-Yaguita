@@ -61,7 +61,7 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden xl:flex items-center space-x-4">
             <nav className="flex space-x-1">
               {navigation.map((item) => (
                 <a
@@ -76,7 +76,7 @@ const Header = () => {
           </div>
 
           {/* Mobile menu button - More prominent */}
-          <div className="lg:hidden">
+          <div className="xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm"
