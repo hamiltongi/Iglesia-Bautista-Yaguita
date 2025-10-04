@@ -11,7 +11,7 @@ from datetime import datetime
 import uuid
 
 # Configuration
-BACKEND_URL = "https://mobile-version-4.preview.emergentagent.com/api"
+BACKEND_URL = "https://svp-journey.preview.emergentagent.com/api"
 
 class BackendTester:
     def __init__(self):
@@ -430,7 +430,7 @@ class BackendTester:
             "anonymous": False,
             "donor_name": "Jean Donateur",
             "donor_email": "jean@exemple.com",
-            "origin_url": "https://mobile-version-4.preview.emergentagent.com"
+            "origin_url": "https://svp-journey.preview.emergentagent.com"
         }
         
         try:
@@ -463,7 +463,7 @@ class BackendTester:
             "anonymous": False,
             "donor_name": "Marie Généreuse",
             "donor_email": "marie@exemple.com",
-            "origin_url": "https://mobile-version-4.preview.emergentagent.com"
+            "origin_url": "https://svp-journey.preview.emergentagent.com"
         }
         
         try:
@@ -492,7 +492,7 @@ class BackendTester:
             "donation_type": "one_time",
             "donor_name": "Test User",
             "donor_email": "test@exemple.com",
-            "origin_url": "https://mobile-version-4.preview.emergentagent.com"
+            "origin_url": "https://svp-journey.preview.emergentagent.com"
         }
         
         try:
@@ -510,7 +510,7 @@ class BackendTester:
             "donation_type": "one_time",
             "donor_name": "Test User",
             "donor_email": "test@exemple.com",
-            "origin_url": "https://mobile-version-4.preview.emergentagent.com"
+            "origin_url": "https://svp-journey.preview.emergentagent.com"
             # Missing amount for custom package
         }
         
@@ -553,7 +553,7 @@ class BackendTester:
             "anonymous": True,
             "donor_name": "Anonyme",
             "donor_email": "anonyme@exemple.com",
-            "origin_url": "https://mobile-version-4.preview.emergentagent.com"
+            "origin_url": "https://svp-journey.preview.emergentagent.com"
         }
         
         try:
