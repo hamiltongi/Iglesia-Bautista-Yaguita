@@ -17,19 +17,19 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Church Info */}
-          <div className="lg:col-span-1">
-            <div className="flex items-center space-x-3 mb-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {/* Church Info - Mobile optimized */}
+          <div className="lg:col-span-1 text-center sm:text-left">
+            <div className="flex items-center justify-center sm:justify-start space-x-3 mb-4 sm:mb-6">
               <img 
                 src="https://customer-assets.emergentagent.com/job_5b3d9efd-acc4-4d0b-8611-b313beec4754/artifacts/m9yrtrgf_Add_a_heading-removebg-preview.png" 
                 alt="Logo" 
-                className="h-12 w-12 object-contain"
+                className="h-10 w-10 sm:h-12 sm:w-12 object-contain"
               />
               <div>
-                <h3 className="text-xl font-bold text-white">{mockData.church.name}</h3>
-                <p className="text-gray-300">Fondée en {mockData.church.founded}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-white">{mockData.church.name}</h3>
+                <p className="text-gray-300 text-sm">Fondée en {mockData.church.founded}</p>
               </div>
             </div>
             
