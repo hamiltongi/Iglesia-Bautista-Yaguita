@@ -88,7 +88,7 @@ const HeaderMobile = () => {
               <div className="grid grid-cols-2 gap-3">
                 <a 
                   href="tel:+18292955254" 
-                  className="flex items-center justify-center px-4 py-3 bg-green-50 text-green-700 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors"
+                  className="flex items-center justify-center px-6 py-4 bg-green-50 text-green-700 rounded-lg text-base font-medium hover:bg-green-100 transition-colors min-h-[48px]"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Phone size={16} className="mr-2" />
