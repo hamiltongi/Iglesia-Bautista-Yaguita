@@ -126,36 +126,40 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            {/* CTA Buttons - Mobile-optimized layout */}
+            <div className="flex flex-col gap-3 sm:gap-4">
+              {/* Primary action - Full width on mobile */}
               <Button 
                 size="lg" 
                 onClick={() => setShowRegistration(true)}
-                className="bg-blue-900 hover:bg-blue-800 text-white px-8 py-4 text-lg transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-blue-900 hover:bg-blue-800 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
               >
-                <UserPlus className="mr-2 h-5 w-5" />
-                S'enregistrer dans la grande famille
+                <UserPlus className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="font-semibold">S'enregistrer dans la grande famille</span>
               </Button>
               
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => window.location.href = '/dons'}
-                className="border-green-600 text-green-600 hover:bg-green-50 px-8 py-4 text-lg transition-all duration-300"
-              >
-                <Heart className="mr-2 h-5 w-5" />
-                Faire un Don
-              </Button>
+              {/* Secondary actions - Grid on mobile, row on desktop */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  onClick={() => window.location.href = '/dons'}
+                  className="w-full border-2 border-green-600 text-green-600 hover:bg-green-50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  <Heart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="font-medium">Faire un Don</span>
+                </Button>
 
-              <Button 
-                variant="outline" 
-                size="lg" 
-                onClick={() => document.getElementById('ministries')?.scrollIntoView({ behavior: 'smooth' })}
-                className="border-amber-600 text-amber-600 hover:bg-amber-50 px-8 py-4 text-lg transition-all duration-300"
-              >
-                <BookOpen className="mr-2 h-5 w-5" />
-                Explorer nos Ministères
-              </Button>
+                <Button 
+                  variant="outline" 
+                  size="lg" 
+                  onClick={() => document.getElementById('ministries')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="w-full border-2 border-amber-600 text-amber-600 hover:bg-amber-50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                >
+                  <BookOpen className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
+                  <span className="font-medium">Explorer nos Ministères</span>
+                </Button>
+              </div>
             </div>
           </div>
 
