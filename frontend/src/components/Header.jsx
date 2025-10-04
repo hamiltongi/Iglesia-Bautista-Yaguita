@@ -60,23 +60,23 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden xl:flex items-center space-x-4">
-            <nav className="flex space-x-1">
+          {/* Desktop Navigation - Only show on large screens */}
+          <nav className="hidden min-w-0 2xl:flex items-center space-x-4" style={{display: window.innerWidth >= 1280 ? 'flex' : 'none'}}>
+            <div className="flex space-x-1">
               {navigation.map((item) => (
                 <a
                   key={item.name}
                   href={item.href}
-                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200"
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
                 >
                   {item.name}
                 </a>
               ))}
-            </nav>
-          </div>
+            </div>
+          </nav>
 
-          {/* Mobile menu button - More prominent */}
-          <div className="xl:hidden">
+          {/* Mobile menu button - Always show on mobile and tablets */}
+          <div className="flex 2xl:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm"
