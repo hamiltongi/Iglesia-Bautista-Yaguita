@@ -340,7 +340,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Member Registration API with New Fields - COMPLETED"
+    - "Mobile Optimization Testing - CORRECTIONS APPLIED - NEEDS RE-TESTING"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
