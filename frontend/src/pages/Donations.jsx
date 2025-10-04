@@ -255,20 +255,20 @@ const Donations = () => {
 
         {/* Impact Stats - Mobile optimized */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <Users className="w-10 h-10 text-blue-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900 mb-1">342+</div>
-            <div className="text-gray-600">Familles aidées</div>
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-md sm:shadow-lg p-4 sm:p-6 text-center">
+            <Users className="w-8 h-8 sm:w-10 sm:h-10 text-blue-600 mx-auto mb-2 sm:mb-3" />
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">342+</div>
+            <div className="text-sm sm:text-base text-gray-600">Familles aidées</div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <Church className="w-10 h-10 text-green-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900 mb-1">50+</div>
-            <div className="text-gray-600">Programmes communautaires</div>
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-md sm:shadow-lg p-4 sm:p-6 text-center">
+            <Church className="w-8 h-8 sm:w-10 sm:h-10 text-green-600 mx-auto mb-2 sm:mb-3" />
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">50+</div>
+            <div className="text-sm sm:text-base text-gray-600">Programmes communautaires</div>
           </div>
-          <div className="bg-white rounded-xl shadow-lg p-6 text-center">
-            <HandHeart className="w-10 h-10 text-purple-600 mx-auto mb-3" />
-            <div className="text-3xl font-bold text-gray-900 mb-1">1000+</div>
-            <div className="text-gray-600">Vies transformées</div>
+          <div className="bg-white rounded-lg sm:rounded-xl shadow-md sm:shadow-lg p-4 sm:p-6 text-center">
+            <HandHeart className="w-8 h-8 sm:w-10 sm:h-10 text-purple-600 mx-auto mb-2 sm:mb-3" />
+            <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-1">1000+</div>
+            <div className="text-sm sm:text-base text-gray-600">Vies transformées</div>
           </div>
         </div>
 
