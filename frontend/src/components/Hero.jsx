@@ -164,26 +164,26 @@ const Hero = () => {
             </div>
           </div>
 
-          {/* Right content - Church Image */}
-          <div className="lg:flex lg:justify-end">
-            <div className="relative">
-              <div className="w-full max-w-lg">
+          {/* Right content - Church Image - Mobile optimized */}
+          <div className="lg:flex lg:justify-end order-1 lg:order-2">
+            <div className="relative mx-auto lg:mx-0 max-w-sm sm:max-w-md lg:max-w-lg">
+              <div className="w-full">
                 <img 
                   src={mockData.church.imageUrl} 
                   alt="Iglesia Bautista Yaguita de Pastor" 
-                  className="w-full h-auto rounded-3xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto rounded-2xl sm:rounded-3xl shadow-xl sm:shadow-2xl transform hover:scale-105 transition-transform duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent rounded-3xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 to-transparent rounded-2xl sm:rounded-3xl"></div>
               </div>
               
-              {/* Floating testimonial card */}
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs">
-                <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center">
-                    <Users className="w-6 h-6 text-blue-600" />
+              {/* Floating testimonial card - Responsive */}
+              <div className="absolute -bottom-4 sm:-bottom-6 -left-3 sm:-left-6 bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl max-w-xs">
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <Users className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">Une communauté de foi</p>
+                    <p className="text-xs sm:text-sm font-medium text-gray-900 leading-tight">Une communauté de foi</p>
                     <p className="text-xs text-gray-500">au cœur de Santiago</p>
                   </div>
                 </div>
