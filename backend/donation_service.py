@@ -1,7 +1,8 @@
 import os
 from typing import Dict, List, Optional
 from fastapi import HTTPException, Request
-from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
+# Temporarily disable Stripe integration due to missing emergentintegrations module
+# from emergentintegrations.payments.stripe.checkout import StripeCheckout, CheckoutSessionRequest
 from donation_models import (
     Donation, 
     DonationCreate, 
