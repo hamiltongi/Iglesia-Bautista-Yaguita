@@ -165,7 +165,7 @@ const Contact = () => {
             <Card className="p-4 sm:p-6 lg:p-8">
               <div className="flex items-center space-x-3 mb-4 sm:mb-6">
                 <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">Envoyez-nous un Message</h3>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900">Envoyez-nous un Message</h3>
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
