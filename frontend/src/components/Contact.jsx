@@ -160,31 +160,31 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
-          <div>
-            <Card className="p-8">
-              <div className="flex items-center space-x-3 mb-6">
-                <MessageCircle className="w-6 h-6 text-blue-600" />
-                <h3 className="text-2xl font-bold text-gray-900">Envoyez-nous un Message</h3>
+          {/* Contact Form - Mobile optimized */}
+          <div className="order-1 lg:order-2">
+            <Card className="p-4 sm:p-6 lg:p-8">
+              <div className="flex items-center space-x-3 mb-4 sm:mb-6">
+                <MessageCircle className="w-5 h-5 sm:w-6 sm:h-6 text-blue-600" />
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900">Envoyez-nous un Message</h3>
               </div>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
                 {/* Status Messages */}
                 {submitStatus === 'success' && (
-                  <div className="p-4 bg-green-50 border border-green-200 rounded-lg">
-                    <p className="text-green-800 font-medium">✅ Message envoyé avec succès !</p>
-                    <p className="text-green-600 text-sm">Nous vous contacterons bientôt.</p>
+                  <div className="p-3 sm:p-4 bg-green-50 border border-green-200 rounded-lg">
+                    <p className="text-green-800 font-medium text-sm sm:text-base">✅ Message envoyé avec succès !</p>
+                    <p className="text-green-600 text-xs sm:text-sm">Nous vous contacterons bientôt.</p>
                   </div>
                 )}
                 
                 {submitStatus === 'error' && (
-                  <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                    <p className="text-red-800 font-medium">❌ Erreur lors de l'envoi</p>
-                    <p className="text-red-600 text-sm">Veuillez réessayer ou nous contacter directement.</p>
+                  <div className="p-3 sm:p-4 bg-red-50 border border-red-200 rounded-lg">
+                    <p className="text-red-800 font-medium text-sm sm:text-base">❌ Erreur lors de l'envoi</p>
+                    <p className="text-red-600 text-xs sm:text-sm">Veuillez réessayer ou nous contacter directement.</p>
                   </div>
                 )}
                 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Nom complet *
