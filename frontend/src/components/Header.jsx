@@ -93,14 +93,15 @@ const Header = () => {
           {/* Mobile menu button - Show only on mobile */}
           {isMobile && (
             <div className="mobile-nav-only">
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm bg-white"
-              aria-label="Menu de navigation"
-            >
-              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm bg-white"
+                aria-label="Menu de navigation"
+              >
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
