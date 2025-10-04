@@ -71,37 +71,31 @@ const Header = () => {
             </div>
           </div>
 
-          {/* Desktop Navigation - Conditionally rendered */}
-          {!isMobile && (
-            <div className="desktop-nav-only">
-              <nav className="flex items-center space-x-4">
-                <div className="flex space-x-1">
-                  {navigation.map((item) => (
-                    <a
-                      key={item.name}
-                      href={item.href}
-                      className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
-                    >
-                      {item.name}
-                    </a>
-                  ))}
-                </div>
-              </nav>
+          {/* Desktop Navigation - Hidden on small screens */}
+          <nav className="hidden min-[1200px]:flex items-center space-x-4">
+            <div className="flex space-x-1">
+              {navigation.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
+                >
+                  {item.name}
+                </a>
+              ))}
             </div>
-          )}
+          </nav>
 
-          {/* Mobile menu button - Show only on mobile */}
-          {isMobile && (
-            <div className="mobile-nav-only">
-              <button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm bg-white"
-                aria-label="Menu de navigation"
-              >
-                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-              </button>
-            </div>
-          )}
+          {/* Mobile menu button - Show on small screens */}
+          <div className="flex min-[1200px]:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="flex items-center justify-center p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 border border-gray-200 shadow-sm bg-white"
+              aria-label="Menu de navigation"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
         </div>
       </div>
 
