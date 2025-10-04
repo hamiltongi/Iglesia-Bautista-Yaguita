@@ -13,7 +13,7 @@ import {
   Activity,
   Church
 } from 'lucide-react';
-import Header from '../components/Header';
+import ResponsiveHeader from '../components/ResponsiveHeader';
 import Footer from '../components/Footer';
 import { mockData } from '../mockData';
 
