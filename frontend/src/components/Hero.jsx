@@ -145,7 +145,7 @@ const Hero = () => {
                   variant="outline" 
                   size="lg" 
                   onClick={() => window.location.href = '/dons'}
-                  className="w-full border-2 border-green-600 text-green-600 hover:bg-green-50 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 hover:scale-105 active:scale-95"
+                  className="w-full border-2 border-green-600 text-green-600 hover:bg-green-50 px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl transition-all duration-300 hover:scale-105 active:scale-95 min-h-[56px]"
                 >
                   <Heart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                   <span className="font-medium">Faire un Don</span>
