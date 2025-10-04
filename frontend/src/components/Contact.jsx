@@ -70,7 +70,7 @@ const Contact = () => {
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
             <span className="text-blue-900">Contactez</span> Nous
           </h2>
-          <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
             Nous serions ravis d'entendre de vous ! Que ce soit pour une question, 
             une prière ou pour planifier une visite, n'hésitez pas à nous contacter.
           </p>
