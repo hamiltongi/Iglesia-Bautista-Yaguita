@@ -29,7 +29,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 
 const HomePage = () => (
   <>
-    <Header />
+    <ResponsiveHeader />
     <main>
       <Hero />
       <About />
