@@ -140,13 +140,10 @@ class DonationService:
             email=user_email or checkout_request.donor_email
         )
 
-        # Setup Stripe checkout
+        # TEMPORARILY MOCKED - Stripe integration disabled due to missing emergentintegrations module
+        # Setup mock checkout session for testing
         host_url = checkout_request.origin_url
-        webhook_url = f"{host_url}/api/webhook/stripe"
-        stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url=webhook_url)
-
-        # Build success and cancel URLs
-        success_url = f"{host_url}/dons/succes?session_id={{CHECKOUT_SESSION_ID}}"
+        success_url = f"{host_url}/dons/succes?session_id=mock_session_123"
         cancel_url = f"{host_url}/dons"
 
         # Prepare metadata
@@ -162,16 +159,13 @@ class DonationService:
             metadata["donor_name"] = donation.donor_name
 
         try:
-            # Create Stripe checkout session
-            checkout_session_request = CheckoutSessionRequest(
-                amount=amount,
-                currency="usd",
-                success_url=success_url,
-                cancel_url=cancel_url,
-                metadata=metadata
-            )
+            # MOCK: Create fake session for testing
+            class MockSession:
+                def __init__(self):
+                    self.session_id = f"mock_session_{donation.id}"
+                    self.url = f"https://checkout.stripe.com/pay/mock_session_{donation.id}"
             
-            session = await stripe_checkout.create_checkout_session(checkout_session_request)
+            session = MockSession()
             
             # Create payment transaction record
             payment_transaction = PaymentTransaction(
