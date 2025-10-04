@@ -32,3 +32,23 @@
         transform: rotate(360deg);
     }
 }
+
+/* Mobile Navigation Classes */
+.mobile-nav-only {
+  display: flex;
+}
+
+.desktop-nav-only {
+  display: none;
+}
+
+/* Desktop only - hide mobile, show desktop */
+@media (min-width: 1280px) {
+  .mobile-nav-only {
+    display: none;
+  }
+  
+  .desktop-nav-only {
+    display: flex;
+  }
+}
