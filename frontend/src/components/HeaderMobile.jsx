@@ -53,13 +53,13 @@ const HeaderMobile = () => {
             </div>
           </div>
 
-          {/* Always visible hamburger button */}
+          {/* Always visible hamburger button - Larger for touch accessibility */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="flex items-center justify-center p-3 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 shadow-sm bg-white transition-colors"
+            className="flex items-center justify-center p-4 rounded-lg text-gray-700 hover:text-blue-900 hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500 border border-gray-200 shadow-sm bg-white transition-colors min-w-[48px] min-h-[48px]"
             aria-label="Menu de navigation"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
       </div>
