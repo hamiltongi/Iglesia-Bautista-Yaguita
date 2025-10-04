@@ -106,7 +106,7 @@ const Hero = () => {
                 <span className="text-amber-600">Yaguita de Pastor</span>
               </h1>
               
-              <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl sm:text-2xl text-gray-600 leading-relaxed">
                 Une communauté de foi, d'espoir et d'amour dans le service de Dieu
               </p>
             </div>
