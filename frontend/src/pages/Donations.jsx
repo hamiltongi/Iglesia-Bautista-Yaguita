@@ -238,23 +238,23 @@ const Donations = () => {
     <div className="min-h-screen bg-gray-50">
       <ResponsiveHeader />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Hero Section */}
-        <div className="text-center mb-12">
-          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <Heart className="w-8 h-8 text-blue-600" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        {/* Hero Section - Mobile optimized */}
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+            <Heart className="w-6 h-6 sm:w-8 sm:h-8 text-blue-600" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4 px-4">
             Soutenez Notre Mission
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-2xl mx-auto px-4 leading-relaxed">
             Votre générosité nous permet de continuer à servir notre communauté et 
             à répandre l'amour du Christ à Santiago et au-delà.
           </p>
         </div>
 
-        {/* Impact Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* Impact Stats - Mobile optimized */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
           <div className="bg-white rounded-xl shadow-lg p-6 text-center">
             <Users className="w-10 h-10 text-blue-600 mx-auto mb-3" />
             <div className="text-3xl font-bold text-gray-900 mb-1">342+</div>
