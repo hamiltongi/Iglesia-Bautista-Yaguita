@@ -80,7 +80,7 @@ const Contact = () => {
           {/* Contact Information - Mobile optimized */}
           <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
             <div>
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Informations de Contact</h3>
+              <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 sm:mb-6">Informations de Contact</h3>
               
               <div className="space-y-4 sm:space-y-6">
                 {/* Address */}
