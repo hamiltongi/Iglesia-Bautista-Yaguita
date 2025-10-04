@@ -342,8 +342,7 @@ metadata:
   run_ui: false
 
 test_plan:
-  current_focus:
-    - "Mobile Optimization Testing - CORRECTIONS APPLIED - NEEDS RE-TESTING"
+  current_focus: []
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
