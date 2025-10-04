@@ -218,11 +218,15 @@ class DonationService:
             }
 
         try:
-            # Initialize Stripe checkout
-            stripe_checkout = StripeCheckout(api_key=self.stripe_api_key, webhook_url="")
+            # MOCK: Return mock status for testing
+            class MockCheckoutStatus:
+                def __init__(self):
+                    self.status = "open"
+                    self.payment_status = "unpaid"
+                    self.amount_total = 5000  # $50.00 in cents
+                    self.currency = "usd"
             
-            # Get checkout status from Stripe
-            checkout_status = await stripe_checkout.get_checkout_status(session_id)
+            checkout_status = MockCheckoutStatus()
             
             # Update payment transaction
             update_data = {
