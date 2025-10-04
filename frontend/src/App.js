@@ -47,7 +47,7 @@ const HomePage = () => (
 
 const App = () => {
   return (
-    <div className="App">
+    <div className="App overflow-x-hidden max-w-full">
       <AuthProvider>
         <BrowserRouter>
           <Routes>
