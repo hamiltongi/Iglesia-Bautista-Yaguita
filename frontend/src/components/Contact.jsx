@@ -186,7 +186,7 @@ const Contact = () => {
                 
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="name" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                       Nom complet *
                     </label>
                     <Input
@@ -198,12 +198,12 @@ const Contact = () => {
                       required
                       disabled={loading}
                       placeholder="Votre nom complet"
-                      className="w-full"
+                      className="w-full h-12 sm:h-10 text-base sm:text-sm"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="email" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                       E-mail *
                     </label>
                     <Input
@@ -215,14 +215,14 @@ const Contact = () => {
                       required
                       disabled={loading}
                       placeholder="votre@email.com"
-                      className="w-full"
+                      className="w-full h-12 sm:h-10 text-base sm:text-sm"
                     />
                   </div>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
+                <div className="grid sm:grid-cols-2 gap-4">
                   <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="phone" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                       Téléphone
                     </label>
                     <Input
@@ -233,12 +233,12 @@ const Contact = () => {
                       onChange={handleChange}
                       disabled={loading}
                       placeholder="Votre numéro de téléphone"
-                      className="w-full"
+                      className="w-full h-12 sm:h-10 text-base sm:text-sm"
                     />
                   </div>
                   
                   <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="subject" className="block text-xs sm:text-sm font-medium text-gray-700 mb-1 sm:mb-2">
                       Sujet *
                     </label>
                     <Input
