@@ -87,20 +87,40 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
+      {/* Mobile Navigation - Enhanced with better spacing and styling */}
       {isMenuOpen && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
-          <div className="px-4 pt-2 pb-3 space-y-1">
+        <div className="lg:hidden bg-white border-t border-gray-200 shadow-lg">
+          <div className="px-4 py-4 space-y-2 max-h-96 overflow-y-auto">
             {navigation.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50"
+                className="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-all duration-200 border border-transparent hover:border-blue-100 active:bg-blue-100"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </a>
             ))}
+            
+            {/* Quick contact buttons in mobile menu */}
+            <div className="pt-4 border-t border-gray-100 mt-4">
+              <div className="grid grid-cols-2 gap-3">
+                <a 
+                  href="tel:+18292955254" 
+                  className="flex items-center justify-center px-4 py-3 bg-green-50 text-green-700 rounded-lg text-sm font-medium hover:bg-green-100 transition-colors"
+                >
+                  <Phone size={16} className="mr-2" />
+                  Appeler
+                </a>
+                <a 
+                  href="mailto:ibautistayaguitadelpastor@gmail.com" 
+                  className="flex items-center justify-center px-4 py-3 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+                >
+                  <Mail size={16} className="mr-2" />
+                  Email
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}
