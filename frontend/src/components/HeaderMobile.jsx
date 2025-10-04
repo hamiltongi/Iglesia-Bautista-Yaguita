@@ -96,7 +96,7 @@ const HeaderMobile = () => {
                 </a>
                 <a 
                   href="mailto:ibautistayaguitadelpastor@gmail.com" 
-                  className="flex items-center justify-center px-4 py-3 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-100 transition-colors"
+                  className="flex items-center justify-center px-6 py-4 bg-blue-50 text-blue-700 rounded-lg text-base font-medium hover:bg-blue-100 transition-colors min-h-[48px]"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <Mail size={16} className="mr-2" />
