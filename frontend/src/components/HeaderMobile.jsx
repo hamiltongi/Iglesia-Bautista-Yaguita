@@ -72,7 +72,7 @@ const HeaderMobile = () => {
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-3 rounded-lg text-base font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-all duration-200 border border-transparent hover:border-blue-100 active:bg-blue-100"
+                className="block px-6 py-4 rounded-lg text-lg font-medium text-gray-700 hover:text-blue-900 hover:bg-blue-50 transition-all duration-200 border border-transparent hover:border-blue-100 active:bg-blue-100 min-h-[48px] flex items-center"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <div className="flex items-center justify-between">
