@@ -133,7 +133,7 @@ const Hero = () => {
               <Button 
                 size="lg" 
                 onClick={() => setShowRegistration(true)}
-                className="w-full bg-blue-900 hover:bg-blue-800 text-white px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg transition-all duration-300 transform hover:scale-105 active:scale-95"
+                className="w-full bg-blue-900 hover:bg-blue-800 text-white px-8 sm:px-10 py-4 sm:py-5 text-lg sm:text-xl transition-all duration-300 transform hover:scale-105 active:scale-95 min-h-[56px]"
               >
                 <UserPlus className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
                 <span className="font-semibold">S'enregistrer dans la grande famille</span>
