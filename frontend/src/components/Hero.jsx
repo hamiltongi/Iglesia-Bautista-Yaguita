@@ -110,19 +110,19 @@ const Hero = () => {
               </p>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-6">
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-blue-900">342+</div>
-                <div className="text-sm text-gray-600">Membres inscrits</div>
+            {/* Stats - Mobile-optimized */}
+            <div className="grid grid-cols-3 gap-3 sm:gap-6">
+              <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-2xl sm:text-3xl font-bold text-blue-900">342+</div>
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">Membres inscrits</div>
               </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-amber-600">14</div>
-                <div className="text-sm text-gray-600">Ans de service</div>
+              <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-2xl sm:text-3xl font-bold text-amber-600">14</div>
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">Ans de service</div>
               </div>
-              <div className="text-center p-4 bg-white/60 backdrop-blur-sm rounded-xl">
-                <div className="text-3xl font-bold text-blue-900">3</div>
-                <div className="text-sm text-gray-600">Institutions</div>
+              <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
+                <div className="text-2xl sm:text-3xl font-bold text-blue-900">3</div>
+                <div className="text-xs sm:text-sm text-gray-600 font-medium">Institutions</div>
               </div>
             </div>
 
