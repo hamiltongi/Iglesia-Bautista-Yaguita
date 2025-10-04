@@ -106,7 +106,7 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation - Enhanced with better spacing and styling */}
-      {isMenuOpen && (
+      {isMenuOpen && isMobile && (
         <div className="mobile-nav-only bg-white border-t border-gray-200 shadow-lg">
           <div className="px-4 py-4 space-y-2 max-h-96 overflow-y-auto">
             {navigation.map((item) => (
