@@ -6,7 +6,7 @@ Quick test of donation system with new Stripe key
 import requests
 import json
 
-BACKEND_URL = 'https://account-fix-1.preview.emergentagent.com/api'
+BACKEND_URL = 'https://mobile-version-4.preview.emergentagent.com/api'
 
 print('=== TESTING DONATION SYSTEM WITH NEW STRIPE KEY ===')
 
@@ -33,7 +33,7 @@ support_data = {
     'anonymous': False,
     'donor_name': 'Jean Testeur',
     'donor_email': 'jean.testeur@example.com',
-    'origin_url': 'https://account-fix-1.preview.emergentagent.com'
+    'origin_url': 'https://mobile-version-4.preview.emergentagent.com'
 }
 
 try:
@@ -61,7 +61,7 @@ custom_data = {
     'anonymous': False,
     'donor_name': 'Marie Testeuse',
     'donor_email': 'marie.testeuse@example.com',
-    'origin_url': 'https://account-fix-1.preview.emergentagent.com'
+    'origin_url': 'https://mobile-version-4.preview.emergentagent.com'
 }
 
 try:
