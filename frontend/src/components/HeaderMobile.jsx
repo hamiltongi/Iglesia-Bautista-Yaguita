@@ -38,7 +38,7 @@ const HeaderMobile = () => {
       </div>
 
       {/* Main mobile header */}
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="w-full mx-auto px-4">
         <div className="flex justify-between items-center py-3">
           {/* Compact logo */}
           <div className="flex items-center space-x-2">
