@@ -119,7 +119,7 @@ const Hero = () => {
               </div>
               <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-2xl sm:text-3xl font-bold text-amber-600">14</div>
-                <div className="text-xs sm:text-sm text-gray-600 font-medium">Ans de service</div>
+                <div className="text-sm sm:text-base text-gray-600 font-medium">Ans de service</div>
               </div>
               <div className="text-center p-3 sm:p-4 bg-white/70 backdrop-blur-sm rounded-xl shadow-sm hover:shadow-md transition-shadow">
                 <div className="text-2xl sm:text-3xl font-bold text-blue-900">3</div>
